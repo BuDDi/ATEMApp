@@ -161,8 +161,6 @@ public class MainView extends Composite implements MainPresenter.Display {
 	@UiField
 	ToggleButton trans_ctrl_style_cut;
 
-	private ToggleGroup transitionStyleGroup = new ToggleGroup();
-
 	@UiField
 	ToggleButton downstream_dsk_1_tie;
 
@@ -195,6 +193,7 @@ public class MainView extends Composite implements MainPresenter.Display {
 
 	public MainView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		ToggleGroup transitionStyleGroup = new ToggleGroup();
 		transitionStyleGroup.add(trans_ctrl_style_mix);
 		transitionStyleGroup.add(trans_ctrl_style_dip);
 		transitionStyleGroup.add(trans_ctrl_style_wipe);
@@ -393,22 +392,42 @@ public class MainView extends Composite implements MainPresenter.Display {
 	}
 
 	@Override
-	public ToggleGroup getTransitionControlTransStyleToggleGroup() {
-		return transitionStyleGroup;
+	public ToggleButton getTransitionControlTransStyleMixButton() {
+		return trans_ctrl_style_mix;
 	}
 
 	@Override
-	public ToggleButton getTransitionContrloTransStylePrevButton() {
+	public ToggleButton getTransitionControlTransStyleDipButton() {
+		return trans_ctrl_style_dip;
+	}
+
+	@Override
+	public ToggleButton getTransitionControlTransStyleWipeButton() {
+		return trans_ctrl_style_wipe;
+	}
+
+	@Override
+	public ToggleButton getTransitionControlTransStyleDveButton() {
+		return trans_ctrl_style_dve;
+	}
+
+	@Override
+	public ToggleButton getTransitionControlTransStyleStingButton() {
+		return trans_ctrl_style_sting;
+	}
+
+	@Override
+	public ToggleButton getTransitionControlTransStylePrevButton() {
 		return trans_ctrl_style_prev_trans;
 	}
 
 	@Override
-	public ToggleButton getTransitionContrloTransStyleAutoButton() {
+	public ToggleButton getTransitionControlTransStyleAutoButton() {
 		return trans_ctrl_style_auto;
 	}
 
 	@Override
-	public ToggleButton getTransitionContrloTransStyleCutButton() {
+	public ToggleButton getTransitionControlTransStyleCutButton() {
 		return trans_ctrl_style_cut;
 	}
 

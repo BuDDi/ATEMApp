@@ -274,20 +274,22 @@
 		<container:child>
 			<container:AccordionLayoutContainer>
 
-				<gxt:ContentPanel animCollapse="false" headingText="Online Users">
+				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 1 M/E 1">
+
+				</gxt:ContentPanel>
+				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 2 M/E 1">
+
+				</gxt:ContentPanel>
+				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 3 M/E 1">
 
 				</gxt:ContentPanel>
 
 				<gxt:ContentPanel animCollapse="false"
-					bodyStyleName="pad-text" headingText="Settings">
+					bodyStyleName="pad-text" headingText="Upstream Key 4 M/E 1">
 				</gxt:ContentPanel>
 
 				<gxt:ContentPanel animCollapse="false"
-					bodyStyleName="pad-text" headingText="Stuff">
-				</gxt:ContentPanel>
-
-				<gxt:ContentPanel animCollapse="false"
-					bodyStyleName="pad-text" headingText="More Stuff">
+					bodyStyleName="pad-text" headingText="Transition">
 				</gxt:ContentPanel>
 
 			</container:AccordionLayoutContainer>

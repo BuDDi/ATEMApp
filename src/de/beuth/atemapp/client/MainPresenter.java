@@ -10,6 +10,8 @@ import org.atmosphere.gwt.client.AtmosphereListener;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
@@ -19,7 +21,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
-import com.sencha.gxt.core.client.util.ToggleGroup;
 import com.sencha.gxt.widget.core.client.Slider;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
@@ -388,6 +389,409 @@ public class MainPresenter implements Presenter {
 						value));
 			}
 		});
+		display.getPreviewInputBlackButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton prevInputBlackBtn = display
+								.getPreviewInputBlackButton();
+						Boolean value = prevInputBlackBtn.getValue();
+						prevInputBlackBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT_BLACK_BTN_ID, value));
+					}
+				});
+		display.getPreviewInputBarsButton().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton prevInputBarsBtn = display.getPreviewInputBarsButton();
+				Boolean value = prevInputBarsBtn.getValue();
+				prevInputBarsBtn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT_BARS_BTN_ID,
+						value));
+			}
+		});
+		display.getPreviewColor1Button().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton prevColor1Btn = display.getPreviewColor1Button();
+				Boolean value = prevColor1Btn.getValue();
+				prevColor1Btn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.PREVIEW_COLOR1_BTN_ID,
+						value));
+			}
+		});
+		display.getPreviewColor2Button().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton prevColor2Btn = display.getPreviewColor2Button();
+				Boolean value = prevColor2Btn.getValue();
+				prevColor2Btn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.PREVIEW_COLOR2_BTN_ID,
+						value));
+			}
+		});
+		display.getPreviewMedia1Button().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton prevMedia1Btn = display.getPreviewMedia1Button();
+				Boolean value = prevMedia1Btn.getValue();
+				prevMedia1Btn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.PREVIEW_MEDIA1_BTN_ID,
+						value));
+			}
+		});
+		display.getPreviewMedia2Button().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton prevMedia2Btn = display.getPreviewMedia2Button();
+				Boolean value = prevMedia2Btn.getValue();
+				prevMedia2Btn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.PREVIEW_MEDIA2_BTN_ID,
+						value));
+			}
+		});
+
+		display.getTransitionControlNextTransOnAir1Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextOnAir1Btn = display
+								.getTransitionControlNextTransOnAir1Button();
+						Boolean value = transCtrlNextOnAir1Btn.getValue();
+						transCtrlNextOnAir1Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_ONAIR1_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransOnAir2Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextOnAir2Btn = display
+								.getTransitionControlNextTransOnAir2Button();
+						Boolean value = transCtrlNextOnAir2Btn.getValue();
+						transCtrlNextOnAir2Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_ONAIR2_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransOnAir3Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextOnAir3Btn = display
+								.getTransitionControlNextTransOnAir3Button();
+						Boolean value = transCtrlNextOnAir3Btn.getValue();
+						transCtrlNextOnAir3Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_ONAIR3_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransOnAir4Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextOnAir4Btn = display
+								.getTransitionControlNextTransOnAir4Button();
+						Boolean value = transCtrlNextOnAir4Btn.getValue();
+						transCtrlNextOnAir4Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_ONAIR4_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransBackgroundButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextBkgdBtn = display
+								.getTransitionControlNextTransBackgroundButton();
+						Boolean value = transCtrlNextBkgdBtn.getValue();
+						transCtrlNextBkgdBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_BKGD_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransKey1Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextKey1Btn = display
+								.getTransitionControlNextTransKey1Button();
+						Boolean value = transCtrlNextKey1Btn.getValue();
+						transCtrlNextKey1Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_KEY1_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransKey2Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextKey2Btn = display
+								.getTransitionControlNextTransKey2Button();
+						Boolean value = transCtrlNextKey2Btn.getValue();
+						transCtrlNextKey2Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_KEY2_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransKey3Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextKey3Btn = display
+								.getTransitionControlNextTransKey3Button();
+						Boolean value = transCtrlNextKey3Btn.getValue();
+						transCtrlNextKey3Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_KEY3_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlNextTransKey4Button().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlNextKey4Btn = display
+								.getTransitionControlNextTransKey4Button();
+						Boolean value = transCtrlNextKey4Btn.getValue();
+						transCtrlNextKey4Btn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_NEXT_KEY4_BTN_ID, value));
+					}
+				});
+
+		display.getTransitionControlTransStyleMixButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleMixBtn = display
+								.getTransitionControlTransStyleMixButton();
+						Boolean value = transCtrlStyleMixBtn.getValue();
+						transCtrlStyleMixBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_MIX_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleDipButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleDipBtn = display
+								.getTransitionControlTransStyleDipButton();
+						Boolean value = transCtrlStyleDipBtn.getValue();
+						transCtrlStyleDipBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_DIP_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleWipeButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleWipeBtn = display
+								.getTransitionControlTransStyleWipeButton();
+						Boolean value = transCtrlStyleWipeBtn.getValue();
+						transCtrlStyleWipeBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_WIPE_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleDveButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleDveBtn = display
+								.getTransitionControlTransStyleDveButton();
+						Boolean value = transCtrlStyleDveBtn.getValue();
+						transCtrlStyleDveBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_DVE_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleStingButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleStingBtn = display
+								.getTransitionControlTransStyleStingButton();
+						Boolean value = transCtrlStyleStingBtn.getValue();
+						transCtrlStyleStingBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_STING_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStylePrevButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStylePrevBtn = display
+								.getTransitionControlTransStylePrevButton();
+						Boolean value = transCtrlStylePrevBtn.getValue();
+						transCtrlStylePrevBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_PREV_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleAutoButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleAutoBtn = display
+								.getTransitionControlTransStyleAutoButton();
+						Boolean value = transCtrlStyleAutoBtn.getValue();
+						transCtrlStyleAutoBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_AUTO_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleCutButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton transCtrlStyleCutBtn = display
+								.getTransitionControlTransStyleCutButton();
+						Boolean value = transCtrlStyleCutBtn.getValue();
+						transCtrlStyleCutBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_CUT_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK1TieButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk1TieBtn = display
+								.getDownstreamDSK1TieButton();
+						Boolean value = downstreamDsk1TieBtn.getValue();
+						downstreamDsk1TieBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK1_TIE_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK1Rate().addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		display.getDownstreamDSK1OnAirButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk1OnAirBtn = display
+								.getDownstreamDSK1OnAirButton();
+						Boolean value = downstreamDsk1OnAirBtn.getValue();
+						downstreamDsk1OnAirBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK1_ONAIR_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK1AutoButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk1AutoBtn = display
+								.getDownstreamDSK1AutoButton();
+						Boolean value = downstreamDsk1AutoBtn.getValue();
+						downstreamDsk1AutoBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK1_AUTO_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK2TieButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk2TieBtn = display
+								.getDownstreamDSK2TieButton();
+						Boolean value = downstreamDsk2TieBtn.getValue();
+						downstreamDsk2TieBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK2_TIE_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK2Rate().addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		display.getDownstreamDSK2OnAirButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk2OnAirBtn = display
+								.getDownstreamDSK2OnAirButton();
+						Boolean value = downstreamDsk2OnAirBtn.getValue();
+						downstreamDsk2OnAirBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK2_ONAIR_BTN_ID, value));
+					}
+				});
+		display.getDownstreamDSK2AutoButton().addSelectHandler(
+				new SelectHandler() {
+
+					@Override
+					public void onSelect(SelectEvent event) {
+						ToggleButton downstreamDsk2AutoBtn = display
+								.getDownstreamDSK2AutoButton();
+						Boolean value = downstreamDsk2AutoBtn.getValue();
+						downstreamDsk2AutoBtn.setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.DOWN_DSK2_AUTO_BTN_ID, value));
+					}
+				});
+		display.getFade2BlackRate().addChangeHandler(new ChangeHandler() {
+
+			@Override
+			public void onChange(ChangeEvent event) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		display.getFade2BlackButton().addSelectHandler(new SelectHandler() {
+
+			@Override
+			public void onSelect(SelectEvent event) {
+				ToggleButton fade2BlackBtn = display.getFade2BlackButton();
+				Boolean value = fade2BlackBtn.getValue();
+				fade2BlackBtn.setValue(!value, false);
+				client.post(new ToggleClickEvent(Display.FADE2BLACK_BTN_ID, value));
+			}
+		});
 	}
 
 	public interface Display extends IsWidget, DisplayConstants {
@@ -466,13 +870,21 @@ public class MainPresenter implements Presenter {
 
 		ToggleButton getTransitionControlNextTransKey4Button();
 
-		ToggleGroup getTransitionControlTransStyleToggleGroup();
+		ToggleButton getTransitionControlTransStyleMixButton();
 
-		ToggleButton getTransitionContrloTransStylePrevButton();
+		ToggleButton getTransitionControlTransStyleDipButton();
 
-		ToggleButton getTransitionContrloTransStyleAutoButton();
+		ToggleButton getTransitionControlTransStyleWipeButton();
 
-		ToggleButton getTransitionContrloTransStyleCutButton();
+		ToggleButton getTransitionControlTransStyleDveButton();
+
+		ToggleButton getTransitionControlTransStyleStingButton();
+
+		ToggleButton getTransitionControlTransStylePrevButton();
+
+		ToggleButton getTransitionControlTransStyleAutoButton();
+
+		ToggleButton getTransitionControlTransStyleCutButton();
 
 		Slider getTransitionBar();
 
@@ -591,9 +1003,119 @@ public class MainPresenter implements Presenter {
 					} else if (pressedBtn.equals(Display.PROGRAM_MEDIA2_BTN_ID)) {
 						toggleButton = MainPresenter.this.display
 								.getProgramMedia2Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT1_BTN_ID)) {
+						toggleButton = display.getPreviewInput1Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT2_BTN_ID)) {
+						toggleButton = display.getPreviewInput2Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT3_BTN_ID)) {
+						toggleButton = display.getPreviewInput3Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT4_BTN_ID)) {
+						toggleButton = display.getPreviewInput4Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT5_BTN_ID)) {
+						toggleButton = display.getPreviewInput5Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT6_BTN_ID)) {
+						toggleButton = display.getPreviewInput6Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT7_BTN_ID)) {
+						toggleButton = display.getPreviewInput7Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT8_BTN_ID)) {
+						toggleButton = display.getPreviewInput8Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT_BLACK_BTN_ID)) {
+						toggleButton = display.getPreviewInputBlackButton();
+					} else if (pressedBtn.equals(Display.PREVIEW_INPUT_BARS_BTN_ID)) {
+						toggleButton = display.getPreviewInputBarsButton();
+					} else if (pressedBtn.equals(Display.PREVIEW_COLOR1_BTN_ID)) {
+						toggleButton = display.getPreviewColor1Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_COLOR2_BTN_ID)) {
+						toggleButton = display.getPreviewColor2Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_MEDIA1_BTN_ID)) {
+						toggleButton = display.getPreviewMedia1Button();
+					} else if (pressedBtn.equals(Display.PREVIEW_MEDIA2_BTN_ID)) {
+						toggleButton = display.getPreviewMedia2Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_ONAIR1_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransOnAir1Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_ONAIR2_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransOnAir2Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_ONAIR3_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransOnAir3Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_ONAIR4_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransOnAir4Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_BKGD_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransBackgroundButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_KEY1_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransKey1Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_KEY2_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransKey2Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_KEY3_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransKey3Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_NEXT_KEY4_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlNextTransKey4Button();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_MIX_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleMixButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_DIP_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleDipButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_WIPE_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleWipeButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_DVE_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleDveButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_STING_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleStingButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_PREV_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStylePrevButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_AUTO_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleAutoButton();
+					} else if (pressedBtn
+							.equals(Display.TRANS_CTRL_STYLE_CUT_BTN_ID)) {
+						toggleButton = display
+								.getTransitionControlTransStyleCutButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK1_TIE_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK1TieButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK1_ONAIR_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK1OnAirButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK1_AUTO_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK1AutoButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK2_TIE_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK2TieButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK2_ONAIR_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK2OnAirButton();
+					} else if (pressedBtn.equals(Display.DOWN_DSK2_AUTO_BTN_ID)) {
+						toggleButton = display.getDownstreamDSK2AutoButton();
+					} else if (pressedBtn.equals(Display.FADE2BLACK_BTN_ID)) {
+						toggleButton = display.getFade2BlackButton();
 					}
 					if (toggleButton != null) {
-						toggleButton.setValue(true);
+						toggleButton.setValue(e.getValue());
 					}
 				} else if (message instanceof SliderEvent) {
 					SliderEvent e = (SliderEvent) message;
