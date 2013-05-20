@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="test-classes" path="test"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT 2.4.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/GXT"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-compat-jbossweb-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-gwt-client-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-gwt-server-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-gwt-common-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-runtime-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-compat-tomcat-1.0.13.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/atmosphere-compat-tomcat7-1.0.13.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>
