@@ -263,14 +263,34 @@
 					<gwt:HorizontalPanel spacing="5">
 						<gwt:VerticalPanel>
 							<gwt:Label text="RATE" />
-							<gwt:TextBox ui:field="ftb_rate" text="0"
-								pixelSize="40, 20" />
+							<gwt:TextBox ui:field="ftb_rate" text="0" pixelSize="40, 20" />
 						</gwt:VerticalPanel>
 						<button:ToggleButton ui:field="ftb" text="AUTO"
 							pixelSize="40, 40" />
 					</gwt:HorizontalPanel>
 				</gxt:FramedPanel>
 			</gwt:VerticalPanel>
+		</container:child>
+		<container:child>
+			<container:AccordionLayoutContainer>
+
+				<gxt:ContentPanel animCollapse="false" headingText="Online Users">
+
+				</gxt:ContentPanel>
+
+				<gxt:ContentPanel animCollapse="false"
+					bodyStyleName="pad-text" headingText="Settings">
+				</gxt:ContentPanel>
+
+				<gxt:ContentPanel animCollapse="false"
+					bodyStyleName="pad-text" headingText="Stuff">
+				</gxt:ContentPanel>
+
+				<gxt:ContentPanel animCollapse="false"
+					bodyStyleName="pad-text" headingText="More Stuff">
+				</gxt:ContentPanel>
+
+			</container:AccordionLayoutContainer>
 		</container:child>
 	</container:HorizontalLayoutContainer>
 </ui:UiBinder> 
