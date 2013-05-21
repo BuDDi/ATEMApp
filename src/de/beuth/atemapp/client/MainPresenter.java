@@ -8,8 +8,10 @@ import org.atmosphere.gwt.client.AtmosphereClient;
 import org.atmosphere.gwt.client.AtmosphereGWTSerializer;
 import org.atmosphere.gwt.client.AtmosphereListener;
 
+import com.google.gwt.core.client.Duration;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.RepeatingCommand;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -23,6 +25,10 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
 import com.sencha.gxt.widget.core.client.Slider;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
+import com.sencha.gxt.widget.core.client.event.BlurEvent;
+import com.sencha.gxt.widget.core.client.event.BlurEvent.BlurHandler;
+import com.sencha.gxt.widget.core.client.event.FocusEvent;
+import com.sencha.gxt.widget.core.client.event.FocusEvent.FocusHandler;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 
@@ -266,17 +272,27 @@ public class MainPresenter implements Presenter {
 						value));
 			}
 		});
-		display.getTransitionBar().addValueChangeHandler(
-				new ValueChangeHandler<Integer>() {
+		// display.getTransitionBar().addValueChangeHandler(
+		// new ValueChangeHandler<Integer>() {
+		//
+		// @Override
+		// public void onValueChange(ValueChangeEvent<Integer> event) {
+		// client.post(new SliderEvent(client.getConnectionID(),
+		// DisplayConstants.TRANSITION_CONTROL_SLIDER_ID, display
+		// .getTransitionBar().getValue()));
+		//
+		// }
+		// });
+		display.getTransitionBar().addFocusHandler(new FocusHandler() {
 
-					@Override
-					public void onValueChange(ValueChangeEvent<Integer> event) {
-						client.post(new SliderEvent(client.getConnectionID(),
-								DisplayConstants.TRANSITION_CONTROL_SLIDER_ID, display
-										.getTransitionBar().getValue()));
-
-					}
-				});
+			@Override
+			public void onFocus(FocusEvent event) {
+				// TODO Auto-generated method stub
+				Scheduler.get().scheduleIncremental(
+						new SliderPollCommand(display.getTransitionBar()));
+				logger.info("Focus " + display.getTransitionBar().getValue());
+			}
+		});
 		display.getPreviewInput1Button().addSelectHandler(new SelectHandler() {
 
 			@Override
@@ -1144,6 +1160,50 @@ public class MainPresenter implements Presenter {
 		@Override
 		public void onAfterRefresh() {
 			logger.info("comet.afterRefresh [" + client.getConnectionID() + "]");
+		}
+	}
+
+	private class SliderPollCommand implements RepeatingCommand {
+
+		private Slider slider;
+
+		private boolean executeVal;
+
+		private Duration elapsedTime;
+
+		public SliderPollCommand(Slider slider) {
+			this.slider = slider;
+			init();
+		}
+
+		private void init() {
+			executeVal = true;
+			elapsedTime = new Duration();
+			this.slider.addValueChangeHandler(new ValueChangeHandler<Integer>() {
+
+				@Override
+				public void onValueChange(ValueChangeEvent<Integer> event) {
+					SliderPollCommand.this.executeVal = false;
+				}
+			});
+			this.slider.addBlurHandler(new BlurHandler() {
+
+				@Override
+				public void onBlur(BlurEvent event) {
+					SliderPollCommand.this.executeVal = false;
+				}
+			});
+		}
+
+		@Override
+		public boolean execute() {
+			Integer value = slider.getValue();
+			if (value != null && elapsedTime.elapsedMillis() > 100) {
+				client.post(new SliderEvent(client.getConnectionID(),
+						Display.TRANSITION_CONTROL_SLIDER_ID, value));
+				elapsedTime = new Duration();
+			}
+			return executeVal;
 		}
 	}
 }
