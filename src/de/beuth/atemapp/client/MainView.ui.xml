@@ -2,8 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:gxt="urn:import:com.sencha.gxt.widget.core.client" xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
 	xmlns:button="urn:import:com.sencha.gxt.widget.core.client.button"
-	xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container"
-	xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget">
+	xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container">
 
 	<ui:with field="themeStyles"
 		type="com.sencha.gxt.core.client.resources.ThemeStyles.Styles" />
