@@ -18,6 +18,6 @@ package de.beuth.atemapp.client;
 import org.atmosphere.gwt.client.AtmosphereGWTSerializer;
 import org.atmosphere.gwt.client.SerialTypes;
 
-@SerialTypes(value = { ToggleClickEvent.class, SliderEvent.class })
+@SerialTypes(value = { ToggleClickEvent.class, SliderTransmitEvent.class })
 public abstract class EventSerializer extends AtmosphereGWTSerializer {
 }

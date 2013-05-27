@@ -2,7 +2,8 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:gxt="urn:import:com.sencha.gxt.widget.core.client" xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
 	xmlns:button="urn:import:com.sencha.gxt.widget.core.client.button"
-	xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container">
+	xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container"
+	xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget">
 
 	<ui:with field="themeStyles"
 		type="com.sencha.gxt.core.client.resources.ThemeStyles.Styles" />
@@ -224,8 +225,11 @@
 							</gwt:VerticalPanel>
 						</gwt:CaptionPanel>
 					</gwt:VerticalPanel>
-					<gxt:Slider ui:field="transition_slider" increment="1"
-						height="300" />
+					<!-- <mgwt:MSlider ui:field="transition_slider" /> -->
+					<gwt:HTMLPanel>
+						<input ui:field="transition_slider" class="slider" type="range" min="0"
+							max="100" />
+					</gwt:HTMLPanel>
 				</gwt:HorizontalPanel>
 			</gxt:FramedPanel>
 		</container:child>
@@ -274,13 +278,16 @@
 		<container:child>
 			<container:AccordionLayoutContainer>
 
-				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 1 M/E 1">
+				<gxt:ContentPanel animCollapse="false"
+					headingText="Upstream Key 1 M/E 1">
 
 				</gxt:ContentPanel>
-				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 2 M/E 1">
+				<gxt:ContentPanel animCollapse="false"
+					headingText="Upstream Key 2 M/E 1">
 
 				</gxt:ContentPanel>
-				<gxt:ContentPanel animCollapse="false" headingText="Upstream Key 3 M/E 1">
+				<gxt:ContentPanel animCollapse="false"
+					headingText="Upstream Key 3 M/E 1">
 
 				</gxt:ContentPanel>
 

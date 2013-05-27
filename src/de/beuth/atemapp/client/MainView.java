@@ -1,6 +1,7 @@
 package de.beuth.atemapp.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -9,7 +10,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.sencha.gxt.core.client.resources.ThemeStyles;
 import com.sencha.gxt.core.client.resources.ThemeStyles.Styles;
 import com.sencha.gxt.core.client.util.ToggleGroup;
-import com.sencha.gxt.widget.core.client.Slider;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
 
 public class MainView extends Composite implements MainPresenter.Display {
@@ -107,8 +107,8 @@ public class MainView extends Composite implements MainPresenter.Display {
 	@UiField
 	ToggleButton prev_media_2;
 
-	@UiField(provided = true)
-	Slider transition_slider = new Slider(true);
+	@UiField
+	InputElement transition_slider;
 
 	@UiField
 	ToggleButton trans_ctrl_next_onair_1;
@@ -199,6 +199,20 @@ public class MainView extends Composite implements MainPresenter.Display {
 		transitionStyleGroup.add(trans_ctrl_style_wipe);
 		transitionStyleGroup.add(trans_ctrl_style_dve);
 		transitionStyleGroup.add(trans_ctrl_style_sting);
+
+		// JSONObject options = Slider.getOptions(0, 100, new int[] { 0 });
+		// options.put(SliderOption.ORIENTATION.toString(), new JSONString(
+		// "vertical"));
+		// options.put(SliderOption.STEP.toString(), new JSONNumber(1));
+		// transition_slider = new Slider("trans_slider", options);
+		// transition_slider.enable();
+		// trans_slider_panel.add(transition_slider);
+		// trans_slider_panel.
+		// this will create a link element at the end of head
+		// MGWTStyle.getTheme().getMGWTClientBundle().getMainCss().ensureInjected();
+
+		// append your own css as last thing in the head
+		// MGWTStyle.injectStyleSheet("ATEMApp.css");
 	}
 
 	@Override
@@ -272,7 +286,7 @@ public class MainView extends Composite implements MainPresenter.Display {
 	}
 
 	@Override
-	public Slider getTransitionBar() {
+	public InputElement getTransitionBar() {
 		return transition_slider;
 	}
 

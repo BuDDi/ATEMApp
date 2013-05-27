@@ -34,3 +34,9 @@ h1 {
 .toggleButton {
 	white-space: normal;
 }
+
+.slider {
+	-webkit-appearance: slider-vertical;
+	width: 32px;
+	height: 300px;
+}

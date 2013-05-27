@@ -8,27 +8,23 @@ import org.atmosphere.gwt.client.AtmosphereClient;
 import org.atmosphere.gwt.client.AtmosphereGWTSerializer;
 import org.atmosphere.gwt.client.AtmosphereListener;
 
-import com.google.gwt.core.client.Duration;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.rpc.StatusCodeException;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.TextBox;
-import com.sencha.gxt.widget.core.client.Slider;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
-import com.sencha.gxt.widget.core.client.event.BlurEvent;
-import com.sencha.gxt.widget.core.client.event.BlurEvent.BlurHandler;
-import com.sencha.gxt.widget.core.client.event.FocusEvent;
-import com.sencha.gxt.widget.core.client.event.FocusEvent.FocusHandler;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 
@@ -283,16 +279,31 @@ public class MainPresenter implements Presenter {
 		//
 		// }
 		// });
-		display.getTransitionBar().addFocusHandler(new FocusHandler() {
+		// display.getTransitionBar().addValueChangeHandler(
+		// new ValueChangeHandler<Integer>() {
+		//
+		// @Override
+		// public void onValueChange(ValueChangeEvent<Integer> event) {
+		// System.out.println("Slider changed: " + event.getValue());
+		// client.post(new SliderTransmitEvent(client.getConnectionID(),
+		// Display.TRANSITION_CONTROL_SLIDER_ID, event.getValue()));
+		// }
+		// });
+
+		Element sliderElem = display.getTransitionBar().cast();
+		DOM.sinkEvents(sliderElem, Event.ONCHANGE);
+		DOM.setEventListener(sliderElem, new EventListener() {
 
 			@Override
-			public void onFocus(FocusEvent event) {
+			public void onBrowserEvent(Event event) {
 				// TODO Auto-generated method stub
-				Scheduler.get().scheduleIncremental(
-						new SliderPollCommand(display.getTransitionBar()));
-				logger.info("Focus " + display.getTransitionBar().getValue());
+				String value = display.getTransitionBar().getValue();
+				System.out.println("Event from slider " + value);
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.TRANSITION_CONTROL_SLIDER_ID, Integer.parseInt(value)));
 			}
 		});
+		// display.getTransitionBar().
 		display.getPreviewInput1Button().addSelectHandler(new SelectHandler() {
 
 			@Override
@@ -902,7 +913,7 @@ public class MainPresenter implements Presenter {
 
 		ToggleButton getTransitionControlTransStyleCutButton();
 
-		Slider getTransitionBar();
+		InputElement getTransitionBar();
 
 		ToggleButton getDownstreamDSK1TieButton();
 
@@ -1133,17 +1144,17 @@ public class MainPresenter implements Presenter {
 					if (toggleButton != null) {
 						toggleButton.setValue(e.getValue());
 					}
-				} else if (message instanceof SliderEvent) {
-					SliderEvent e = (SliderEvent) message;
+				} else if (message instanceof SliderTransmitEvent) {
+					SliderTransmitEvent e = (SliderTransmitEvent) message;
 					String sliderID = e.getSliderID();
-					Slider slider = null;
+					InputElement slider = null;
 					if (sliderID.equals(Display.TRANSITION_CONTROL_SLIDER_ID)) {
 						slider = MainPresenter.this.display.getTransitionBar();
 					}
 					if (slider != null
 							&& !e.getConnectionID().equals(client.getConnectionID())) {
 						blockSlideEvent = true;
-						slider.setValue(e.getValue().intValue());
+						slider.setValue(e.getValue().toString());
 						blockSlideEvent = false;
 					}
 				}
@@ -1163,47 +1174,4 @@ public class MainPresenter implements Presenter {
 		}
 	}
 
-	private class SliderPollCommand implements RepeatingCommand {
-
-		private Slider slider;
-
-		private boolean executeVal;
-
-		private Duration elapsedTime;
-
-		public SliderPollCommand(Slider slider) {
-			this.slider = slider;
-			init();
-		}
-
-		private void init() {
-			executeVal = true;
-			elapsedTime = new Duration();
-			this.slider.addValueChangeHandler(new ValueChangeHandler<Integer>() {
-
-				@Override
-				public void onValueChange(ValueChangeEvent<Integer> event) {
-					SliderPollCommand.this.executeVal = false;
-				}
-			});
-			this.slider.addBlurHandler(new BlurHandler() {
-
-				@Override
-				public void onBlur(BlurEvent event) {
-					SliderPollCommand.this.executeVal = false;
-				}
-			});
-		}
-
-		@Override
-		public boolean execute() {
-			Integer value = slider.getValue();
-			if (value != null && elapsedTime.elapsedMillis() > 100) {
-				client.post(new SliderEvent(client.getConnectionID(),
-						Display.TRANSITION_CONTROL_SLIDER_ID, value));
-				elapsedTime = new Duration();
-			}
-			return executeVal;
-		}
-	}
 }

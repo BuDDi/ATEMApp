@@ -16,7 +16,7 @@ import org.atmosphere.gwt.server.AtmosphereGwtHandler;
 import org.atmosphere.gwt.server.GwtAtmosphereResource;
 
 import de.beuth.atemapp.client.MainPresenter.Display;
-import de.beuth.atemapp.client.SliderEvent;
+import de.beuth.atemapp.client.SliderTransmitEvent;
 import de.beuth.atemapp.client.ToggleClickEvent;
 import de.beuth.atemapp.shared.DisplayConstants;
 
@@ -155,8 +155,8 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 				} else if (buttonID.equals(Display.FADE2BLACK_BTN_ID)) {
 					System.out.println("Instruct ATEM -> Fade to Black");
 				}
-			} else if (message instanceof SliderEvent) {
-				SliderEvent e = (SliderEvent) message;
+			} else if (message instanceof SliderTransmitEvent) {
+				SliderTransmitEvent e = (SliderTransmitEvent) message;
 				String sliderID = e.getSliderID();
 				Integer value = e.getValue();
 				if (sliderID.equals(DisplayConstants.TRANSITION_CONTROL_SLIDER_ID)) {
