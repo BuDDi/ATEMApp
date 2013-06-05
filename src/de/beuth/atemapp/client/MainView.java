@@ -42,12 +42,6 @@ public class MainView extends Composite implements MainPresenter.Display {
 	ToggleButton prog_input_6;
 
 	@UiField
-	ToggleButton prog_input_7;
-
-	@UiField
-	ToggleButton prog_input_8;
-
-	@UiField
 	ToggleButton prog_input_black;
 
 	@UiField
@@ -82,12 +76,6 @@ public class MainView extends Composite implements MainPresenter.Display {
 
 	@UiField
 	ToggleButton prev_input_6;
-
-	@UiField
-	ToggleButton prev_input_7;
-
-	@UiField
-	ToggleButton prev_input_8;
 
 	@UiField
 	ToggleButton prev_input_black;
@@ -246,16 +234,6 @@ public class MainView extends Composite implements MainPresenter.Display {
 	}
 
 	@Override
-	public ToggleButton getProgramInput7Button() {
-		return prog_input_7;
-	}
-
-	@Override
-	public ToggleButton getProgramInput8Button() {
-		return prog_input_8;
-	}
-
-	@Override
 	public ToggleButton getProgramInputBlackButton() {
 		return prog_input_black;
 	}
@@ -318,16 +296,6 @@ public class MainView extends Composite implements MainPresenter.Display {
 	@Override
 	public ToggleButton getPreviewInput6Button() {
 		return prev_input_6;
-	}
-
-	@Override
-	public ToggleButton getPreviewInput7Button() {
-		return prev_input_7;
-	}
-
-	@Override
-	public ToggleButton getPreviewInput8Button() {
-		return prev_input_8;
 	}
 
 	@Override

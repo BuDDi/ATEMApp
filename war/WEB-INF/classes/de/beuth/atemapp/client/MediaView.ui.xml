@@ -1,16 +1,29 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:gxt="urn:import:com.sencha.gxt.widget.core.client" 
-	xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gxt="urn:import:com.sencha.gxt.widget.core.client" xmlns:gwt="urn:import:com.google.gwt.user.client.ui"
 	xmlns:button="urn:import:com.sencha.gxt.widget.core.client.button"
 	xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container">
-	
+
 	<gwt:HorizontalPanel>
-	<gxt:Slider />
-	<gxt:Slider />
-	<gxt:Slider />
-	<gxt:Slider />
-	<gxt:Slider />
-	<gxt:Slider />
+		<gwt:HTMLPanel>
+			<input ui:field="1" class="slider" type="range"
+				min="0" max="100" />
+		</gwt:HTMLPanel>
+		<gwt:HTMLPanel>
+			<input ui:field="2" class="slider" type="range"
+				min="0" max="100" />
+		</gwt:HTMLPanel>
+		<gwt:HTMLPanel>
+			<input ui:field="3" class="slider" type="range"
+				min="0" max="100" />
+		</gwt:HTMLPanel>
+		<gwt:HTMLPanel>
+			<input ui:field="4" class="slider" type="range"
+				min="0" max="100" />
+		</gwt:HTMLPanel>
+		<gwt:HTMLPanel>
+			<input ui:field="5" class="slider" type="range"
+				min="0" max="100" />
+		</gwt:HTMLPanel>
 	</gwt:HorizontalPanel>
 </ui:UiBinder> 

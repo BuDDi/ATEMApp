@@ -154,34 +154,6 @@ public class MainPresenter implements Presenter {
 
 			}
 		});
-		display.getProgramInput7Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput7Btn = display.getProgramInput7Button();
-				Boolean value = progInput7Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput7Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_7_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramInput8Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput8Btn = display.getProgramInput8Button();
-				Boolean value = progInput8Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput8Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_8_BTN_ID,
-						value));
-			}
-		});
 		display.getProgramInputBlackButton().addSelectHandler(
 				new SelectHandler() {
 
@@ -385,34 +357,6 @@ public class MainPresenter implements Presenter {
 				// the button only when the action succeeded on the server
 				prevInput6Btn.setValue(!value, false);
 				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT6_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput7Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput7Btn = display.getPreviewInput7Button();
-				Boolean value = prevInput7Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput7Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT7_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput8Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput8Btn = display.getPreviewInput8Button();
-				Boolean value = prevInput8Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput8Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT8_BTN_ID,
 						value));
 			}
 		});
@@ -835,10 +779,6 @@ public class MainPresenter implements Presenter {
 
 		ToggleButton getProgramInput6Button();
 
-		ToggleButton getProgramInput7Button();
-
-		ToggleButton getProgramInput8Button();
-
 		ToggleButton getProgramInputBlackButton();
 
 		ToggleButton getProgramInputBarsButton();
@@ -862,10 +802,6 @@ public class MainPresenter implements Presenter {
 		ToggleButton getPreviewInput5Button();
 
 		ToggleButton getPreviewInput6Button();
-
-		ToggleButton getPreviewInput7Button();
-
-		ToggleButton getPreviewInput8Button();
 
 		ToggleButton getPreviewInputBlackButton();
 
@@ -1006,12 +942,6 @@ public class MainPresenter implements Presenter {
 					} else if (pressedBtn.equals(Display.PROGRAM_INPUT_6_BTN_ID)) {
 						toggleButton = MainPresenter.this.display
 								.getProgramInput6Button();
-					} else if (pressedBtn.equals(Display.PROGRAM_INPUT_7_BTN_ID)) {
-						toggleButton = MainPresenter.this.display
-								.getProgramInput7Button();
-					} else if (pressedBtn.equals(Display.PROGRAM_INPUT_8_BTN_ID)) {
-						toggleButton = MainPresenter.this.display
-								.getProgramInput8Button();
 					} else if (pressedBtn.equals(Display.PROGRAM_INPUT_BLACK_BTN_ID)) {
 						toggleButton = MainPresenter.this.display
 								.getProgramInputBlackButton();
@@ -1042,10 +972,6 @@ public class MainPresenter implements Presenter {
 						toggleButton = display.getPreviewInput5Button();
 					} else if (pressedBtn.equals(Display.PREVIEW_INPUT6_BTN_ID)) {
 						toggleButton = display.getPreviewInput6Button();
-					} else if (pressedBtn.equals(Display.PREVIEW_INPUT7_BTN_ID)) {
-						toggleButton = display.getPreviewInput7Button();
-					} else if (pressedBtn.equals(Display.PREVIEW_INPUT8_BTN_ID)) {
-						toggleButton = display.getPreviewInput8Button();
 					} else if (pressedBtn.equals(Display.PREVIEW_INPUT_BLACK_BTN_ID)) {
 						toggleButton = display.getPreviewInputBlackButton();
 					} else if (pressedBtn.equals(Display.PREVIEW_INPUT_BARS_BTN_ID)) {

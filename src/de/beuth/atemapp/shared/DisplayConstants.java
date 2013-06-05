@@ -14,10 +14,6 @@ public interface DisplayConstants {
 
 	public static final String PROGRAM_INPUT_6_BTN_ID = "prog_input_6";
 
-	public static final String PROGRAM_INPUT_7_BTN_ID = "prog_input_7";
-
-	public static final String PROGRAM_INPUT_8_BTN_ID = "prog_input_8";
-
 	public static final String PROGRAM_INPUT_BLACK_BTN_ID = "prog_input_black";
 
 	public static final String PROGRAM_INPUT_BARS_BTN_ID = "prog_input_bars";
@@ -43,10 +39,6 @@ public interface DisplayConstants {
 	public static final String PREVIEW_INPUT5_BTN_ID = "prev_input_5";
 
 	public static final String PREVIEW_INPUT6_BTN_ID = "prev_input_6";
-
-	public static final String PREVIEW_INPUT7_BTN_ID = "prev_input_7";
-
-	public static final String PREVIEW_INPUT8_BTN_ID = "prev_input_8";
 
 	public static final String PREVIEW_INPUT_BARS_BTN_ID = "prev_input_bars";
 

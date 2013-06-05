@@ -70,20 +70,16 @@
 												text="2" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prog_input_3"
 												text="3" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prog_input_4"
-												text="4" pixelSize="40, 40" />
 										</gwt:HorizontalPanel>
 										<gwt:HorizontalPanel spacing="5">
 											<button:ToggleButton ui:field="prog_input_bars"
 												text="Bars" pixelSize="40, 40" />
+											<button:ToggleButton ui:field="prog_input_4"
+												text="4" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prog_input_5"
 												text="5" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prog_input_6"
 												text="6" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prog_input_7"
-												text="7" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prog_input_8"
-												text="8" pixelSize="40, 40" />
 										</gwt:HorizontalPanel>
 									</gwt:VerticalPanel>
 								</gwt:CaptionPanel>
@@ -123,20 +119,16 @@
 												text="2" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prev_input_3"
 												text="3" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prev_input_4"
-												text="4" pixelSize="40, 40" />
 										</gwt:HorizontalPanel>
 										<gwt:HorizontalPanel spacing="5">
 											<button:ToggleButton ui:field="prev_input_bars"
 												text="Bars" pixelSize="40, 40" />
+											<button:ToggleButton ui:field="prev_input_4"
+												text="4" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prev_input_5"
 												text="5" pixelSize="40, 40" />
 											<button:ToggleButton ui:field="prev_input_6"
 												text="6" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prev_input_7"
-												text="7" pixelSize="40, 40" />
-											<button:ToggleButton ui:field="prev_input_8"
-												text="8" pixelSize="40, 40" />
 										</gwt:HorizontalPanel>
 									</gwt:VerticalPanel>
 								</gwt:CaptionPanel>
