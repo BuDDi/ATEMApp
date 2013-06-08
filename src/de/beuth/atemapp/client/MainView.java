@@ -1,16 +1,25 @@
 package de.beuth.atemapp.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.sencha.gxt.core.client.resources.ThemeStyles;
 import com.sencha.gxt.core.client.resources.ThemeStyles.Styles;
 import com.sencha.gxt.core.client.util.ToggleGroup;
+import com.sencha.gxt.data.shared.ListStore;
+import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
+import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
+import com.sencha.gxt.widget.core.client.grid.ColumnModel;
+import com.sencha.gxt.widget.core.client.grid.Grid;
+import com.sencha.gxt.widget.core.client.grid.GridView;
 
 public class MainView extends Composite implements MainPresenter.Display {
 
@@ -19,6 +28,10 @@ public class MainView extends Composite implements MainPresenter.Display {
 
 	interface MainViewUiBinder extends UiBinder<Widget, MainView> {
 	}
+
+	// Instantiate the grid properties.
+	private static final VideoProperties gridProperties = GWT
+			.create(VideoProperties.class);
 
 	@UiField(provided = true)
 	Styles themeStyles = ThemeStyles.getStyle();
@@ -99,94 +112,192 @@ public class MainView extends Composite implements MainPresenter.Display {
 	InputElement transition_slider;
 
 	@UiField
-	ToggleButton trans_ctrl_next_onair_1;
+	ToggleButton trans_ctrl_auto;
 
 	@UiField
-	ToggleButton trans_ctrl_next_onair_2;
+	ToggleButton trans_ctrl_cut;
 
 	@UiField
-	ToggleButton trans_ctrl_next_onair_3;
+	ToggleButton trans_ctrl_ftb;
 
 	@UiField
-	ToggleButton trans_ctrl_next_onair_4;
+	InputElement audio_master_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_next_bkgd;
+	Label audio_master_output_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_next_key_1;
+	ToggleButton audio_master_mute;
 
 	@UiField
-	ToggleButton trans_ctrl_next_key_2;
+	InputElement audio_input_1_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_next_key_3;
+	Label audio_input_1_output_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_next_key_4;
+	ToggleButton audio_input_1_mute;
 
 	@UiField
-	ToggleButton trans_ctrl_style_mix;
+	InputElement audio_input_2_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_style_dip;
+	Label audio_input_2_output_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_style_wipe;
+	ToggleButton audio_input_2_mute;
 
 	@UiField
-	ToggleButton trans_ctrl_style_dve;
+	InputElement audio_input_3_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_style_sting;
+	Label audio_input_3_output_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_style_prev_trans;
+	ToggleButton audio_input_3_mute;
 
 	@UiField
-	ToggleButton trans_ctrl_style_auto;
+	InputElement audio_input_4_volume;
 
 	@UiField
-	ToggleButton trans_ctrl_style_cut;
+	Label audio_input_4_output_volume;
 
 	@UiField
-	ToggleButton downstream_dsk_1_tie;
+	ToggleButton audio_input_4_mute;
 
 	@UiField
-	TextBox downstream_dsk_1_rate;
+	InputElement audio_input_5_volume;
 
 	@UiField
-	ToggleButton downstream_dsk_1_onair;
+	Label audio_input_5_output_volume;
 
 	@UiField
-	ToggleButton downstream_dsk_1_auto;
+	ToggleButton audio_input_5_mute;
 
 	@UiField
-	ToggleButton downstream_dsk_2_tie;
+	InputElement audio_input_6_volume;
 
 	@UiField
-	TextBox downstream_dsk_2_rate;
+	Label audio_input_6_output_volume;
 
 	@UiField
-	ToggleButton downstream_dsk_2_onair;
+	ToggleButton audio_input_6_mute;
+
+	@UiField(provided = true)
+	ColumnModel<Video> columnModel1;
+
+	@UiField(provided = true)
+	ListStore<Video> listStore1;
 
 	@UiField
-	ToggleButton downstream_dsk_2_auto;
+	GridView<Video> gridView1;
 
 	@UiField
-	TextBox ftb_rate;
+	Grid<Video> vlc_grid1;
+
+	@UiField(provided = true)
+	ColumnModel<Video> columnModel2;
+
+	@UiField(provided = true)
+	ListStore<Video> listStore2;
 
 	@UiField
-	ToggleButton ftb;
+	GridView<Video> gridView2;
+
+	@UiField
+	Grid<Video> vlc_grid2;
+
+	@UiField(provided = true)
+	ColumnModel<Video> columnModel3;
+
+	@UiField(provided = true)
+	ListStore<Video> listStore3;
+
+	@UiField
+	GridView<Video> gridView3;
+
+	@UiField
+	Grid<Video> vlc_grid3;
+
+	@UiField
+	TextButton vlc_1_play;
+
+	@UiField
+	TextButton vlc_1_resume;
+
+	@UiField
+	TextButton vlc_1_pause;
+
+	@UiField
+	TextButton vlc_2_play;
+
+	@UiField
+	TextButton vlc_2_resume;
+
+	@UiField
+	TextButton vlc_2_pause;
+
+	@UiField
+	TextButton vlc_3_play;
+
+	@UiField
+	TextButton vlc_3_resume;
+
+	@UiField
+	TextButton vlc_3_pause;
+
+	private ToggleGroup progInputGroup;
+
+	private ToggleGroup prevInputGroup;
+
+	private ListStore<Video> initListStore() {
+		return new ListStore<Video>(gridProperties.key());
+	}
+
+	private ColumnModel<Video> initColumnModel() {
+		ColumnConfig<Video, String> nameCol = new ColumnConfig<Video, String>(
+				gridProperties.name(), 100, "Name");
+		List<ColumnConfig<Video, ?>> columns = new ArrayList<ColumnConfig<Video, ?>>();
+		columns.add(nameCol);
+		return new ColumnModel<Video>(columns);
+	}
 
 	public MainView() {
+		listStore1 = initListStore();
+		listStore2 = initListStore();
+		listStore3 = initListStore();
+		columnModel1 = initColumnModel();
+		columnModel2 = initColumnModel();
+		columnModel3 = initColumnModel();
+		vlc_grid1 = new Grid<Video>(listStore1, columnModel1);
+		vlc_grid2 = new Grid<Video>(listStore2, columnModel2);
+		vlc_grid3 = new Grid<Video>(listStore3, columnModel3);
+
 		initWidget(uiBinder.createAndBindUi(this));
-		ToggleGroup transitionStyleGroup = new ToggleGroup();
-		transitionStyleGroup.add(trans_ctrl_style_mix);
-		transitionStyleGroup.add(trans_ctrl_style_dip);
-		transitionStyleGroup.add(trans_ctrl_style_wipe);
-		transitionStyleGroup.add(trans_ctrl_style_dve);
-		transitionStyleGroup.add(trans_ctrl_style_sting);
+		progInputGroup = new ToggleGroup();
+		progInputGroup.add(prog_input_black);
+		progInputGroup.add(prog_input_bars);
+		progInputGroup.add(prog_input_1);
+		progInputGroup.add(prog_input_2);
+		progInputGroup.add(prog_input_3);
+		progInputGroup.add(prog_input_4);
+		progInputGroup.add(prog_input_5);
+		progInputGroup.add(prog_input_6);
+
+		prevInputGroup = new ToggleGroup();
+		prevInputGroup.add(prev_input_black);
+		prevInputGroup.add(prev_input_bars);
+		prevInputGroup.add(prev_input_1);
+		prevInputGroup.add(prev_input_2);
+		prevInputGroup.add(prev_input_3);
+		prevInputGroup.add(prev_input_4);
+		prevInputGroup.add(prev_input_5);
+		prevInputGroup.add(prev_input_6);
+		// transitionStyleGroup.add(trans_ctrl_style_mix);
+		// transitionStyleGroup.add(trans_ctrl_style_dip);
+		// transitionStyleGroup.add(trans_ctrl_style_wipe);
+		// transitionStyleGroup.add(trans_ctrl_style_dve);
+		// transitionStyleGroup.add(trans_ctrl_style_sting);
 
 		// JSONObject options = Slider.getOptions(0, 100, new int[] { 0 });
 		// options.put(SliderOption.ORIENTATION.toString(), new JSONString(
@@ -329,138 +440,65 @@ public class MainView extends Composite implements MainPresenter.Display {
 	}
 
 	@Override
-	public ToggleButton getTransitionControlNextTransOnAir1Button() {
-		return trans_ctrl_next_onair_1;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransOnAir2Button() {
-		return trans_ctrl_next_onair_2;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransOnAir3Button() {
-		return trans_ctrl_next_onair_3;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransOnAir4Button() {
-		return trans_ctrl_next_onair_4;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransBackgroundButton() {
-		return trans_ctrl_next_bkgd;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransKey1Button() {
-		return trans_ctrl_next_key_1;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransKey2Button() {
-		return trans_ctrl_next_key_2;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransKey3Button() {
-		return trans_ctrl_next_key_3;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlNextTransKey4Button() {
-		return trans_ctrl_next_key_4;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStyleMixButton() {
-		return trans_ctrl_style_mix;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStyleDipButton() {
-		return trans_ctrl_style_dip;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStyleWipeButton() {
-		return trans_ctrl_style_wipe;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStyleDveButton() {
-		return trans_ctrl_style_dve;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStyleStingButton() {
-		return trans_ctrl_style_sting;
-	}
-
-	@Override
-	public ToggleButton getTransitionControlTransStylePrevButton() {
-		return trans_ctrl_style_prev_trans;
-	}
-
-	@Override
 	public ToggleButton getTransitionControlTransStyleAutoButton() {
-		return trans_ctrl_style_auto;
+		return trans_ctrl_auto;
 	}
 
 	@Override
 	public ToggleButton getTransitionControlTransStyleCutButton() {
-		return trans_ctrl_style_cut;
+		return trans_ctrl_cut;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK1TieButton() {
-		return downstream_dsk_1_tie;
+	public InputElement getMasterVolumeSlider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public TextBox getDownstreamDSK1Rate() {
-		return downstream_dsk_1_rate;
+	public InputElement getAudioInput1Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK1OnAirButton() {
-		return downstream_dsk_1_onair;
+	public InputElement getAudioInput2Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK1AutoButton() {
-		return downstream_dsk_1_auto;
+	public InputElement getAudioInput3Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK2TieButton() {
-		return downstream_dsk_2_tie;
+	public InputElement getAudioInput4Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public TextBox getDownstreamDSK2Rate() {
-		return downstream_dsk_2_rate;
+	public InputElement getAudioInput5Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK2OnAirButton() {
-		return downstream_dsk_2_onair;
+	public InputElement getAudioInput6Slider() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ToggleButton getDownstreamDSK2AutoButton() {
-		return downstream_dsk_2_auto;
+	public ToggleGroup getProgramGroup() {
+		return progInputGroup;
 	}
 
 	@Override
-	public TextBox getFade2BlackRate() {
-		return ftb_rate;
-	}
-
-	@Override
-	public ToggleButton getFade2BlackButton() {
-		return ftb;
+	public ToggleGroup getPreviewGroup() {
+		return prevInputGroup;
 	}
 
 }

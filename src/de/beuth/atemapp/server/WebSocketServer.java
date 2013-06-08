@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -30,7 +31,13 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 
 	private DatagramSocket udpSocket;
 
+	private DatagramSocket udpListenSocket;
+
 	private GwtAtmosphereResource lastResource;
+
+	private Thread udpReceiveThread;
+
+	private static final String address = "141.64.52.245";
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
@@ -41,34 +48,46 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 		Logger.getLogger("").getHandlers()[0].setLevel(Level.ALL);
 		logger.trace("Updated logging levels");
 		try {
-			udpSocket = new DatagramSocket(9000, InetAddress.getLocalHost());
-			// udpSender = new DatagramSocket(8000,
-			// );
-		} catch (SocketException e) {
+			udpListenSocket = new DatagramSocket(null);
+			udpListenSocket.setReuseAddress(true);
+			udpListenSocket.bind(new InetSocketAddress(9000));
+		} catch (SocketException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		}
+		try {
+			udpSocket = new DatagramSocket(null);
+			udpSocket.setReuseAddress(true);
+			udpSocket.connect(new InetSocketAddress(
+					InetAddress.getByName(address), 8000));
+		} catch (SocketException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		Thread udpReceiveThread = new Thread(new Runnable() {
+		udpReceiveThread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				while (true) {
-					byte[] buf = new byte[256];
+				byte[] buf = new byte[2048];
+				DatagramPacket packet = new DatagramPacket(buf, buf.length);
+				while (!udpListenSocket.isClosed()) {
 					try {
-						DatagramPacket packet = new DatagramPacket(buf, buf.length);
-						synchronized (udpSocket) {
-							udpSocket.receive(packet);
-						}
+						// synchronized (udpListenSocket) {
+						udpListenSocket.receive(packet);
+						// }
 						String dataStr = new String(packet.getData());
-						dataStr = dataStr.substring(0, dataStr.indexOf('#'));
+						int hashIndex = dataStr.indexOf('#');
+						if (hashIndex >= 0) {
+							dataStr = dataStr.substring(0, hashIndex);
+						}
 						System.out.println("Received packet: " + dataStr + " from "
 								+ packet.getAddress().toString());
-
+						packet.setLength(buf.length);
 						ToggleClickEvent click = null;
 						if (dataStr.equals(DisplayConstants.PROGRAM_INPUT_1_BTN_ID)) {
 							System.out.println("Instruct ATEM -> Prog Input 1");
@@ -148,96 +167,6 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 									DisplayConstants.PREVIEW_MEDIA2_BTN_ID, true);
 							System.out.println("Instruct ATEM -> Preview Media 2");
 						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_ONAIR1_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_ONAIR1_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control On Air 1");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_ONAIR2_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_ONAIR2_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control On Air 2");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_ONAIR3_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_ONAIR3_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control On Air 3");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_ONAIR4_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_ONAIR4_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control On Air 4");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_BKGD_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_BKGD_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control Background");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_KEY1_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_KEY1_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control Key 1");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_KEY2_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_KEY2_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control Key 2");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_KEY3_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_KEY3_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control Key 3");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_NEXT_KEY4_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_NEXT_KEY4_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Control Key 4");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_MIX_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_MIX_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Mix");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_DIP_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_DIP_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Dip");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_WIPE_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_WIPE_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Wipe");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_DVE_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_DVE_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Dve");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_STING_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_STING_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Sting");
-						} else if (dataStr
-								.equals(Display.TRANS_CTRL_STYLE_PREV_BTN_ID)) {
-							click = new ToggleClickEvent(
-									DisplayConstants.TRANS_CTRL_STYLE_PREV_BTN_ID, true);
-							System.out
-									.println("Instruct ATEM -> Transition Style Prev");
-						} else if (dataStr
 								.equals(Display.TRANS_CTRL_STYLE_AUTO_BTN_ID)) {
 							click = new ToggleClickEvent(
 									DisplayConstants.TRANS_CTRL_STYLE_AUTO_BTN_ID, true);
@@ -286,8 +215,10 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 						if (click != null) {
 							messages.add(click);
 						}
-						broadcast(messages, lastResource);
-					} catch (IOException e) {
+						if (lastResource != null) {
+							broadcast(messages, lastResource);
+						}
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -311,6 +242,13 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 	public void cometTerminated(GwtAtmosphereResource cometResponse,
 			boolean serverInitiated) {
 		super.cometTerminated(cometResponse, serverInitiated);
+		if (udpSocket != null) {
+			udpSocket.close();
+		}
+		if (udpListenSocket != null) {
+			udpListenSocket.close();
+		}
+
 		logger.info("Comet disconnected");
 	}
 
@@ -339,12 +277,14 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 		if (command != null) {
 			byte[] data = command.getBytes();
 			try {
-				InetAddress ia = InetAddress.getByName("141.64.95.78");
-				DatagramPacket paket = new DatagramPacket(data, data.length, ia,
-						8000);
-				synchronized (udpSocket) {
-					udpSocket.send(paket);
+				if (!udpSocket.isConnected()) {
+					udpSocket.connect(InetAddress.getByName(address), 8000);
 				}
+				DatagramPacket paket = new DatagramPacket(data, data.length,
+						udpSocket.getInetAddress(), 8000);
+				// synchronized (udpSocket) {
+				udpSocket.send(paket);
+				// }
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

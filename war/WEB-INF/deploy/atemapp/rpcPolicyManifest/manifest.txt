@@ -1,2 +1,3 @@
 # Module atemapp
 # RPC service class, partial path of RPC policy file
+com.google.gwt.logging.shared.RemoteLoggingService, 7F0C86432345E6D09A4F8B11EAA1B060.gwt.rpc

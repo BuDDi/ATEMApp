@@ -52,39 +52,9 @@ public interface DisplayConstants {
 
 	public static final String PREVIEW_MEDIA2_BTN_ID = "prev_media_2";
 
-	public static final String TRANS_CTRL_NEXT_ONAIR1_BTN_ID = "trans_ctrl_next_onair_1";
+	public static final String TRANS_CTRL_STYLE_AUTO_BTN_ID = "transition_auto";
 
-	public static final String TRANS_CTRL_NEXT_ONAIR2_BTN_ID = "trans_ctrl_next_onair_2";
-
-	public static final String TRANS_CTRL_NEXT_ONAIR3_BTN_ID = "trans_ctrl_next_onair_3";
-
-	public static final String TRANS_CTRL_NEXT_ONAIR4_BTN_ID = "trans_ctrl_next_onair_4";
-
-	public static final String TRANS_CTRL_NEXT_BKGD_BTN_ID = "trans_ctrl_next_bkgd";
-
-	public static final String TRANS_CTRL_NEXT_KEY1_BTN_ID = "trans_ctrl_next_key_1";
-
-	public static final String TRANS_CTRL_NEXT_KEY2_BTN_ID = "trans_ctrl_next_key_2";
-
-	public static final String TRANS_CTRL_NEXT_KEY3_BTN_ID = "trans_ctrl_next_key_3";
-
-	public static final String TRANS_CTRL_NEXT_KEY4_BTN_ID = "trans_ctrl_next_key_4";
-
-	public static final String TRANS_CTRL_STYLE_MIX_BTN_ID = "trans_ctrl_style_mix";
-
-	public static final String TRANS_CTRL_STYLE_DIP_BTN_ID = "trans_ctrl_style_dip";
-
-	public static final String TRANS_CTRL_STYLE_WIPE_BTN_ID = "trans_ctrl_style_wipe";
-
-	public static final String TRANS_CTRL_STYLE_DVE_BTN_ID = "trans_ctrl_style_dve";
-
-	public static final String TRANS_CTRL_STYLE_STING_BTN_ID = "trans_ctrl_style_sting";
-
-	public static final String TRANS_CTRL_STYLE_PREV_BTN_ID = "trans_ctrl_style_prev";
-
-	public static final String TRANS_CTRL_STYLE_AUTO_BTN_ID = "trans_ctrl_style_auto";
-
-	public static final String TRANS_CTRL_STYLE_CUT_BTN_ID = "trans_ctrl_style_cut";
+	public static final String TRANS_CTRL_STYLE_CUT_BTN_ID = "transition_cut";
 
 	public static final String DOWN_DSK1_TIE_BTN_ID = "down_dsk1_tie";
 
@@ -99,5 +69,65 @@ public interface DisplayConstants {
 	public static final String DOWN_DSK2_AUTO_BTN_ID = "down_dsk2_auto";
 
 	public static final String FADE2BLACK_BTN_ID = "fade2black";
+
+	public static final String AUDIO_MASTER_VOL_SLIDER_ID = "audio_master_volume";
+
+	public static final String AUDIO_MASTER_MUTE_BTN_ID = "audio_master_mute";
+
+	public static final String AUDIO_MASTER_VOL_OUTPUT = "audio_master_output_volume";
+
+	public static final String AUDIO_INPUT1_VOL_SLIDER_ID = "audio_input_1_volume";
+
+	public static final String AUDIO_INPUT1_MUTE_BTN_ID = "audio_input_1_mute";
+
+	public static final String AUDIO_INPUT1_VOL_OUTPUT = "audio_input_1_output_volume";
+
+	public static final String AUDIO_INPUT2_VOL_SLIDER_ID = "audio_input_2_volume";
+
+	public static final String AUDIO_INPUT2_MUTE_BTN_ID = "audio_input_2_mute";
+
+	public static final String AUDIO_INPUT2_VOL_OUTPUT = "audio_input_2_output_volume";
+
+	public static final String AUDIO_INPUT3_VOL_SLIDER_ID = "audio_input_3_volume";
+
+	public static final String AUDIO_INPUT3_MUTE_BTN_ID = "audio_input_3_mute";
+
+	public static final String AUDIO_INPUT3_VOL_OUTPUT = "audio_input_3_output_volume";
+
+	public static final String AUDIO_INPUT4_VOL_SLIDER_ID = "audio_input_4_volume";
+
+	public static final String AUDIO_INPUT4_MUTE_BTN_ID = "audio_input_4_mute";
+
+	public static final String AUDIO_INPUT4_VOL_OUTPUT = "audio_input_2_output_volume";
+
+	public static final String AUDIO_INPUT5_VOL_SLIDER_ID = "audio_input_5_volume";
+
+	public static final String AUDIO_INPUT5_MUTE_BTN_ID = "audio_input_5_mute";
+
+	public static final String AUDIO_INPUT5_VOL_OUTPUT = "audio_input_5_output_volume";
+
+	public static final String AUDIO_INPUT6_VOL_SLIDER_ID = "audio_input_6_volume";
+
+	public static final String AUDIO_INPUT6_MUTE_BTN_ID = "audio_input_6_mute";
+
+	public static final String AUDIO_INPUT6_VOL_OUTPUT = "audio_input_6_output_volume";
+
+	public static final String VLC_1_PLAY_BTN_ID = "vlc_1_play";
+
+	public static final String VLC_1_RESUME_BTN_ID = "vlc_1_resume";
+
+	public static final String VLC_1_PAUSE_BTN_ID = "vlc_1_pause";
+
+	public static final String VLC_2_PLAY_BTN_ID = "vlc_2_play";
+
+	public static final String VLC_2_RESUME_BTN_ID = "vlc_2_resume";
+
+	public static final String VLC_2_PAUSE_BTN_ID = "vlc_2_pause";
+
+	public static final String VLC_3_PLAY_BTN_ID = "vlc_3_play";
+
+	public static final String VLC_3_RESUME_BTN_ID = "vlc_3_resume";
+
+	public static final String VLC_3_PAUSE_BTN_ID = "vlc_3_pause";
 
 }
