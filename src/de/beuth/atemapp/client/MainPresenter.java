@@ -761,9 +761,9 @@ public class MainPresenter implements Presenter {
 					}
 					if (slider != null
 							&& !e.getConnectionID().equals(client.getConnectionID())) {
-						blockSlideEvent = true;
+						// blockSlideEvent = true;
 						slider.setValue(e.getValue().toString());
-						blockSlideEvent = false;
+						// blockSlideEvent = false;
 					}
 				}
 			}

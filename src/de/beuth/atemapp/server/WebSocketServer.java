@@ -39,6 +39,8 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 
 	private static final String address = "141.64.52.245";
 
+	// TODO robuste UDP-Socket-Verbindung
+
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
