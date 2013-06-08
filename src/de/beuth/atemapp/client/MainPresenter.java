@@ -453,71 +453,85 @@ public class MainPresenter implements Presenter {
 								Display.TRANS_CTRL_STYLE_CUT_BTN_ID, value));
 					}
 				});
-		/*
-		 * Element masterSliderElem = display.getMasterVolumeSlider().cast();
-		 * DOM.sinkEvents(masterSliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(masterSliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getMasterVolumeSlider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_MASTER_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput1SliderElem = display.getAudioInput1Slider().cast();
-		 * DOM.sinkEvents(audiInput1SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput1SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput1Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT1_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput2SliderElem = display.getAudioInput2Slider().cast();
-		 * DOM.sinkEvents(audiInput2SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput2SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput2Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT2_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput3SliderElem = display.getAudioInput3Slider().cast();
-		 * DOM.sinkEvents(audiInput3SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput3SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput3Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT3_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput4SliderElem = display.getAudioInput4Slider().cast();
-		 * DOM.sinkEvents(audiInput4SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput4SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput4Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT4_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput5SliderElem = display.getAudioInput5Slider().cast();
-		 * DOM.sinkEvents(audiInput5SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput5SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput5Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT5_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 * Element audiInput6SliderElem = display.getAudioInput6Slider().cast();
-		 * DOM.sinkEvents(audiInput6SliderElem, Event.ONCHANGE);
-		 * DOM.setEventListener(audiInput6SliderElem, new EventListener() {
-		 * 
-		 * @Override public void onBrowserEvent(Event event) { // TODO
-		 * Auto-generated method stub String value =
-		 * display.getAudioInput6Slider().getValue(); client.post(new
-		 * SliderTransmitEvent(client.getConnectionID(),
-		 * Display.AUDIO_INPUT6_VOL_SLIDER_ID, Integer.parseInt(value))); } });
-		 */
+
+		Element masterSliderElem = display.getMasterVolumeSlider().cast();
+		DOM.sinkEvents(masterSliderElem, Event.ONCHANGE);
+		DOM.setEventListener(masterSliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getMasterVolumeSlider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_MASTER_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput1SliderElem = display.getAudioInput1Slider().cast();
+		DOM.sinkEvents(audiInput1SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput1SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput1Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT1_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput2SliderElem = display.getAudioInput2Slider().cast();
+		DOM.sinkEvents(audiInput2SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput2SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput2Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT2_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput3SliderElem = display.getAudioInput3Slider().cast();
+		DOM.sinkEvents(audiInput3SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput3SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput3Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT3_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput4SliderElem = display.getAudioInput4Slider().cast();
+		DOM.sinkEvents(audiInput4SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput4SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput4Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT4_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput5SliderElem = display.getAudioInput5Slider().cast();
+		DOM.sinkEvents(audiInput5SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput5SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput5Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT5_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+		Element audiInput6SliderElem = display.getAudioInput6Slider().cast();
+		DOM.sinkEvents(audiInput6SliderElem, Event.ONCHANGE);
+		DOM.setEventListener(audiInput6SliderElem, new EventListener() {
+
+			@Override
+			public void onBrowserEvent(Event event) {
+				String value = display.getAudioInput6Slider().getValue();
+				client.post(new SliderTransmitEvent(client.getConnectionID(),
+						Display.AUDIO_INPUT6_VOL_SLIDER_ID, Integer.parseInt(value)));
+			}
+		});
+
 	}
 
 	public interface Display extends IsWidget, DisplayConstants {

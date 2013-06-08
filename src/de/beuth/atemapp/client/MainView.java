@@ -451,44 +451,37 @@ public class MainView extends Composite implements MainPresenter.Display {
 
 	@Override
 	public InputElement getMasterVolumeSlider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_master_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput1Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_1_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput2Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_2_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput3Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_3_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput4Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_4_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput5Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_5_volume;
 	}
 
 	@Override
 	public InputElement getAudioInput6Slider() {
-		// TODO Auto-generated method stub
-		return null;
+		return audio_input_6_volume;
 	}
 
 	@Override
