@@ -83,14 +83,17 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 						udpListenSocket.receive(packet);
 						// }
 						String dataStr = new String(packet.getData());
+						String valueStr = null;
 						int hashIndex = dataStr.indexOf('#');
 						if (hashIndex >= 0) {
+							valueStr = dataStr.substring(hashIndex + 1);
 							dataStr = dataStr.substring(0, hashIndex);
 						}
 						System.out.println("Received packet: " + dataStr + " from "
 								+ packet.getAddress().toString());
 						packet.setLength(buf.length);
 						ToggleClickEvent click = null;
+						SliderTransmitEvent slider = null;
 						if (dataStr.equals(DisplayConstants.PROGRAM_INPUT_1_BTN_ID)) {
 							System.out.println("Instruct ATEM -> Prog Input 1");
 							click = new ToggleClickEvent(
@@ -212,10 +215,20 @@ public class WebSocketServer extends AtmosphereGwtHandler {
 							System.out.println("Instruct ATEM -> Fade to Black");
 							click = new ToggleClickEvent(
 									DisplayConstants.FADE2BLACK_BTN_ID, true);
+						} else if (dataStr
+								.equals(DisplayConstants.TRANSITION_CONTROL_SLIDER_ID)
+								&& lastResource != null) {
+							slider = new SliderTransmitEvent(lastResource
+									.getConnectionID(),
+									DisplayConstants.TRANSITION_CONTROL_SLIDER_ID,
+									Integer.parseInt(valueStr));
 						}
 						List<Object> messages = new ArrayList<Object>();
 						if (click != null) {
 							messages.add(click);
+						}
+						if (slider != null) {
+							messages.add(slider);
 						}
 						if (lastResource != null) {
 							broadcast(messages, lastResource);

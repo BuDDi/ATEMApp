@@ -269,8 +269,12 @@ public class MainPresenter implements Presenter {
 				// TODO Auto-generated method stub
 				String value = display.getTransitionBar().getValue();
 				System.out.println("Event from slider " + value);
-				client.post(new SliderTransmitEvent(client.getConnectionID(),
-						Display.TRANSITION_CONTROL_SLIDER_ID, Integer.parseInt(value)));
+				if (!blockSlideEvent) {
+					client.post(new SliderTransmitEvent(client.getConnectionID(),
+							Display.TRANSITION_CONTROL_SLIDER_ID, Integer
+									.parseInt(value)));
+				}
+				blockSlideEvent = false;
 			}
 		});
 		// display.getTransitionBar().
@@ -761,9 +765,8 @@ public class MainPresenter implements Presenter {
 					}
 					if (slider != null
 							&& !e.getConnectionID().equals(client.getConnectionID())) {
-						// blockSlideEvent = true;
+						blockSlideEvent = true;
 						slider.setValue(e.getValue().toString());
-						// blockSlideEvent = false;
 					}
 				}
 			}
