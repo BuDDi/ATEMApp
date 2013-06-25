@@ -25,7 +25,6 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.sencha.gxt.core.client.util.ToggleGroup;
-import com.sencha.gxt.widget.core.client.button.ToggleButton;
 
 import de.beuth.atemapp.shared.DisplayConstants;
 
@@ -280,8 +279,6 @@ public class MainPresenter implements Presenter {
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
 						Boolean value = event.getValue();
-						boolean isDepressed = ((ToggleButton) display
-								.getPreviewInputBlackButton()).isAllowDepress();
 						display.getPreviewInputBlackButton().setValue(!value, false);
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT_BLACK_BTN_ID, value));
