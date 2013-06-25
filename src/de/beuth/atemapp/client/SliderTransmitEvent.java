@@ -3,6 +3,12 @@ package de.beuth.atemapp.client;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Slider event for transmission to the server.
+ * 
+ * @author S. Buder
+ * 
+ */
 public class SliderTransmitEvent implements Serializable {
 
 	/**
@@ -22,7 +28,8 @@ public class SliderTransmitEvent implements Serializable {
 		this(null, null, null);
 	}
 
-	public SliderTransmitEvent(Integer connectionID, String sliderID, Integer value) {
+	public SliderTransmitEvent(Integer connectionID, String sliderID,
+			Integer value) {
 		this.connectionID = connectionID;
 		this.sliderID = sliderID;
 		this.value = value;

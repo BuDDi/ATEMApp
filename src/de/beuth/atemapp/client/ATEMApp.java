@@ -6,6 +6,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
+ * 
+ * @author S. Buder
  */
 public class ATEMApp implements EntryPoint {
 

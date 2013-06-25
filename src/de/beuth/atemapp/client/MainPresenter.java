@@ -11,6 +11,8 @@ import org.atmosphere.gwt.client.AtmosphereListener;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.DOM;
@@ -19,15 +21,20 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.rpc.StatusCodeException;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.sencha.gxt.core.client.util.ToggleGroup;
-import com.sencha.gxt.widget.core.client.button.ToggleButton;
-import com.sencha.gxt.widget.core.client.event.SelectEvent;
-import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 
 import de.beuth.atemapp.shared.DisplayConstants;
 
+/**
+ * {@link Presenter} of the main view. Communicates with the WebSocket-Server
+ * and updates the GUI if server answers.
+ * 
+ * @author S. Buder
+ * 
+ */
 public class MainPresenter implements Presenter {
 
 	static final Logger logger = Logger.getLogger(MainPresenter.class.getName());
@@ -62,204 +69,301 @@ public class MainPresenter implements Presenter {
 				client.start();
 			}
 		});
-		display.getProgramInput1Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				// TODO Auto-generated method stub
-				ToggleButton progInput1Btn = display.getProgramInput1Button();
-				Boolean value = progInput1Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				// progInput1Btn.
-				progInput1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_1_BTN_ID,
-						value));
-
-			}
-		});
-		display.getProgramInput2Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput2Btn = display.getProgramInput2Button();
-				Boolean value = progInput2Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_2_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramInput3Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput3Btn = display.getProgramInput3Button();
-				Boolean value = progInput3Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput3Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_3_BTN_ID,
-						value));
-			}
-		});
-
-		display.getProgramInput4Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput4Btn = display.getProgramInput4Button();
-				Boolean value = progInput4Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput4Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_4_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramInput5Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInput5Btn = display.getProgramInput5Button();
-				Boolean value = progInput5Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput5Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_5_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramInput6Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				// TODO Auto-generated method stub
-				ToggleButton progInput6Btn = display.getProgramInput6Button();
-				Boolean value = progInput6Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInput6Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_6_BTN_ID,
-						value));
-
-			}
-		});
-		display.getProgramInputBlackButton().addSelectHandler(
-				new SelectHandler() {
+		display.getProgramInput1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
 					@Override
-					public void onSelect(SelectEvent event) {
-						ToggleButton progInputBlackBtn = display
-								.getProgramInputBlackButton();
-						Boolean value = progInputBlackBtn.getValue();
-						// set the toggle button to the state before cause we want to
-						// set
-						// the button only when the action succeeded on the server
-						progInputBlackBtn.setValue(!value, false);
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						// get the value first (what the user wants to do)
+						Boolean value = event.getValue();
+						// set the toggle button back to the initial state because we
+						// want to set the button only when the action succeeded on
+						// the server
+						display.getProgramInput1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_1_BTN_ID, value));
+					}
+				});
+		display.getProgramInput2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInput2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_2_BTN_ID, value));
+					}
+				});
+		display.getProgramInput3Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInput3Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_3_BTN_ID, value));
+					}
+				});
+
+		display.getProgramInput4Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInput4Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_4_BTN_ID, value));
+					}
+				});
+		display.getProgramInput5Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInput5Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_5_BTN_ID, value));
+					}
+				});
+		display.getProgramInput6Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInput6Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_6_BTN_ID, value));
+					}
+				});
+		display.getProgramInputBlackButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInputBlackButton().setValue(!value, false);
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_BLACK_BTN_ID, value));
 					}
 				});
-		display.getProgramInputBarsButton().addSelectHandler(new SelectHandler() {
+		display.getProgramInputBarsButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progInputBarsBtn = display.getProgramInputBarsButton();
-				Boolean value = progInputBarsBtn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progInputBarsBtn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_INPUT_BARS_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramColor1Button().addSelectHandler(new SelectHandler() {
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramInputBarsButton().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_INPUT_BARS_BTN_ID, value));
+					}
+				});
+		display.getProgramColor1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progColor1Btn = display.getProgramColor1Button();
-				Boolean value = progColor1Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progColor1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_COLOR1_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramColor2Button().addSelectHandler(new SelectHandler() {
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramColor1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_COLOR1_BTN_ID, value));
+					}
+				});
+		display.getProgramColor2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progColor2Btn = display.getProgramColor2Button();
-				Boolean value = progColor2Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progColor2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_COLOR2_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramMedia1Button().addSelectHandler(new SelectHandler() {
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramColor2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_COLOR2_BTN_ID, value));
+					}
+				});
+		display.getProgramMedia1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progMedia1Btn = display.getProgramMedia1Button();
-				Boolean value = progMedia1Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progMedia1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_MEDIA1_BTN_ID,
-						value));
-			}
-		});
-		display.getProgramMedia2Button().addSelectHandler(new SelectHandler() {
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramMedia1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_MEDIA1_BTN_ID, value));
+					}
+				});
+		display.getProgramMedia2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
 
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton progMedia2Btn = display.getProgramMedia2Button();
-				Boolean value = progMedia2Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				progMedia2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PROGRAM_MEDIA2_BTN_ID,
-						value));
-			}
-		});
-		// display.getTransitionBar().addValueChangeHandler(
-		// new ValueChangeHandler<Integer>() {
-		//
-		// @Override
-		// public void onValueChange(ValueChangeEvent<Integer> event) {
-		// client.post(new SliderEvent(client.getConnectionID(),
-		// DisplayConstants.TRANSITION_CONTROL_SLIDER_ID, display
-		// .getTransitionBar().getValue()));
-		//
-		// }
-		// });
-		// display.getTransitionBar().addValueChangeHandler(
-		// new ValueChangeHandler<Integer>() {
-		//
-		// @Override
-		// public void onValueChange(ValueChangeEvent<Integer> event) {
-		// System.out.println("Slider changed: " + event.getValue());
-		// client.post(new SliderTransmitEvent(client.getConnectionID(),
-		// Display.TRANSITION_CONTROL_SLIDER_ID, event.getValue()));
-		// }
-		// });
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getProgramMedia2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PROGRAM_MEDIA2_BTN_ID, value));
+					}
+				});
 
+		display.getPreviewInput1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT1_BTN_ID, value));
+					}
+				});
+		display.getPreviewInput2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT2_BTN_ID, value));
+					}
+				});
+		display.getPreviewInput3Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput3Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT3_BTN_ID, value));
+					}
+				});
+		display.getPreviewInput4Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput4Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT4_BTN_ID, value));
+					}
+				});
+		display.getPreviewInput5Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput5Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT5_BTN_ID, value));
+					}
+				});
+		display.getPreviewInput6Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInput6Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT6_BTN_ID, value));
+					}
+				});
+		display.getPreviewInputBlackButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInputBlackButton().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT_BLACK_BTN_ID, value));
+					}
+				});
+		display.getPreviewInputBarsButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewInputBarsButton().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_INPUT_BARS_BTN_ID, value));
+					}
+				});
+		display.getPreviewColor1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewColor1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_COLOR1_BTN_ID, value));
+					}
+				});
+		display.getPreviewColor2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewColor2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_COLOR2_BTN_ID, value));
+					}
+				});
+		display.getPreviewMedia1Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewMedia1Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_MEDIA1_BTN_ID, value));
+					}
+				});
+		display.getPreviewMedia2Button().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getPreviewMedia2Button().setValue(!value, false);
+						client.post(new ToggleClickEvent(
+								Display.PREVIEW_MEDIA2_BTN_ID, value));
+					}
+				});
+
+		display.getTransitionControlTransStyleAutoButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getTransitionControlTransStyleAutoButton().setValue(
+								!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_AUTO_BTN_ID, value));
+					}
+				});
+		display.getTransitionControlTransStyleCutButton().addValueChangeHandler(
+				new ValueChangeHandler<Boolean>() {
+
+					@Override
+					public void onValueChange(ValueChangeEvent<Boolean> event) {
+						Boolean value = event.getValue();
+						display.getTransitionControlTransStyleCutButton().setValue(
+								!value, false);
+						client.post(new ToggleClickEvent(
+								Display.TRANS_CTRL_STYLE_CUT_BTN_ID, value));
+					}
+				});
 		Element sliderElem = display.getTransitionBar().cast();
 		DOM.sinkEvents(sliderElem, Event.ONCHANGE);
 		DOM.setEventListener(sliderElem, new EventListener() {
@@ -277,186 +381,6 @@ public class MainPresenter implements Presenter {
 				blockSlideEvent = false;
 			}
 		});
-		// display.getTransitionBar().
-		display.getPreviewInput1Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput1Btn = display.getPreviewInput1Button();
-				Boolean value = prevInput1Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT1_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput2Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput2Btn = display.getPreviewInput2Button();
-				Boolean value = prevInput2Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT2_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput3Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput3Btn = display.getPreviewInput3Button();
-				Boolean value = prevInput3Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput3Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT3_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput4Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput4Btn = display.getPreviewInput4Button();
-				Boolean value = prevInput4Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput4Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT4_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput5Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput5Btn = display.getPreviewInput5Button();
-				Boolean value = prevInput5Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput5Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT5_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInput6Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInput6Btn = display.getPreviewInput6Button();
-				Boolean value = prevInput6Btn.getValue();
-				// set the toggle button to the state before cause we want to
-				// set
-				// the button only when the action succeeded on the server
-				prevInput6Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT6_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewInputBlackButton().addSelectHandler(
-				new SelectHandler() {
-
-					@Override
-					public void onSelect(SelectEvent event) {
-						ToggleButton prevInputBlackBtn = display
-								.getPreviewInputBlackButton();
-						Boolean value = prevInputBlackBtn.getValue();
-						prevInputBlackBtn.setValue(!value, false);
-						client.post(new ToggleClickEvent(
-								Display.PREVIEW_INPUT_BLACK_BTN_ID, value));
-					}
-				});
-		display.getPreviewInputBarsButton().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevInputBarsBtn = display.getPreviewInputBarsButton();
-				Boolean value = prevInputBarsBtn.getValue();
-				prevInputBarsBtn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_INPUT_BARS_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewColor1Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevColor1Btn = display.getPreviewColor1Button();
-				Boolean value = prevColor1Btn.getValue();
-				prevColor1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_COLOR1_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewColor2Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevColor2Btn = display.getPreviewColor2Button();
-				Boolean value = prevColor2Btn.getValue();
-				prevColor2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_COLOR2_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewMedia1Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevMedia1Btn = display.getPreviewMedia1Button();
-				Boolean value = prevMedia1Btn.getValue();
-				prevMedia1Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_MEDIA1_BTN_ID,
-						value));
-			}
-		});
-		display.getPreviewMedia2Button().addSelectHandler(new SelectHandler() {
-
-			@Override
-			public void onSelect(SelectEvent event) {
-				ToggleButton prevMedia2Btn = display.getPreviewMedia2Button();
-				Boolean value = prevMedia2Btn.getValue();
-				prevMedia2Btn.setValue(!value, false);
-				client.post(new ToggleClickEvent(Display.PREVIEW_MEDIA2_BTN_ID,
-						value));
-			}
-		});
-
-		display.getTransitionControlTransStyleAutoButton().addSelectHandler(
-				new SelectHandler() {
-
-					@Override
-					public void onSelect(SelectEvent event) {
-						ToggleButton transCtrlStyleAutoBtn = display
-								.getTransitionControlTransStyleAutoButton();
-						Boolean value = transCtrlStyleAutoBtn.getValue();
-						transCtrlStyleAutoBtn.setValue(!value, false);
-						client.post(new ToggleClickEvent(
-								Display.TRANS_CTRL_STYLE_AUTO_BTN_ID, value));
-					}
-				});
-		display.getTransitionControlTransStyleCutButton().addSelectHandler(
-				new SelectHandler() {
-
-					@Override
-					public void onSelect(SelectEvent event) {
-						ToggleButton transCtrlStyleCutBtn = display
-								.getTransitionControlTransStyleCutButton();
-						Boolean value = transCtrlStyleCutBtn.getValue();
-						transCtrlStyleCutBtn.setValue(!value, false);
-						client.post(new ToggleClickEvent(
-								Display.TRANS_CTRL_STYLE_CUT_BTN_ID, value));
-					}
-				});
 
 		Element masterSliderElem = display.getMasterVolumeSlider().cast();
 		DOM.sinkEvents(masterSliderElem, Event.ONCHANGE);
@@ -540,61 +464,63 @@ public class MainPresenter implements Presenter {
 
 	public interface Display extends IsWidget, DisplayConstants {
 
+		// TODO ToggleGroup sollte entfernt werden, da dies die Abhängigkeit von
+		// GXT bedeutet. Eigene ToggelGroup-Routine verwenden!
 		ToggleGroup getProgramGroup();
 
 		ToggleGroup getPreviewGroup();
 
-		ToggleButton getProgramInput1Button();
+		HasValue<Boolean> getProgramInput1Button();
 
-		ToggleButton getProgramInput2Button();
+		HasValue<Boolean> getProgramInput2Button();
 
-		ToggleButton getProgramInput3Button();
+		HasValue<Boolean> getProgramInput3Button();
 
-		ToggleButton getProgramInput4Button();
+		HasValue<Boolean> getProgramInput4Button();
 
-		ToggleButton getProgramInput5Button();
+		HasValue<Boolean> getProgramInput5Button();
 
-		ToggleButton getProgramInput6Button();
+		HasValue<Boolean> getProgramInput6Button();
 
-		ToggleButton getProgramInputBlackButton();
+		HasValue<Boolean> getProgramInputBlackButton();
 
-		ToggleButton getProgramInputBarsButton();
+		HasValue<Boolean> getProgramInputBarsButton();
 
-		ToggleButton getProgramColor1Button();
+		HasValue<Boolean> getProgramColor1Button();
 
-		ToggleButton getProgramColor2Button();
+		HasValue<Boolean> getProgramColor2Button();
 
-		ToggleButton getProgramMedia1Button();
+		HasValue<Boolean> getProgramMedia1Button();
 
-		ToggleButton getProgramMedia2Button();
+		HasValue<Boolean> getProgramMedia2Button();
 
-		ToggleButton getPreviewInput1Button();
+		HasValue<Boolean> getPreviewInput1Button();
 
-		ToggleButton getPreviewInput2Button();
+		HasValue<Boolean> getPreviewInput2Button();
 
-		ToggleButton getPreviewInput3Button();
+		HasValue<Boolean> getPreviewInput3Button();
 
-		ToggleButton getPreviewInput4Button();
+		HasValue<Boolean> getPreviewInput4Button();
 
-		ToggleButton getPreviewInput5Button();
+		HasValue<Boolean> getPreviewInput5Button();
 
-		ToggleButton getPreviewInput6Button();
+		HasValue<Boolean> getPreviewInput6Button();
 
-		ToggleButton getPreviewInputBlackButton();
+		HasValue<Boolean> getPreviewInputBlackButton();
 
-		ToggleButton getPreviewInputBarsButton();
+		HasValue<Boolean> getPreviewInputBarsButton();
 
-		ToggleButton getPreviewColor1Button();
+		HasValue<Boolean> getPreviewColor1Button();
 
-		ToggleButton getPreviewColor2Button();
+		HasValue<Boolean> getPreviewColor2Button();
 
-		ToggleButton getPreviewMedia1Button();
+		HasValue<Boolean> getPreviewMedia1Button();
 
-		ToggleButton getPreviewMedia2Button();
+		HasValue<Boolean> getPreviewMedia2Button();
 
-		ToggleButton getTransitionControlTransStyleAutoButton();
+		HasValue<Boolean> getTransitionControlTransStyleAutoButton();
 
-		ToggleButton getTransitionControlTransStyleCutButton();
+		HasValue<Boolean> getTransitionControlTransStyleCutButton();
 
 		InputElement getTransitionBar();
 
@@ -632,7 +558,6 @@ public class MainPresenter implements Presenter {
 		@Override
 		public void onDisconnected() {
 			logger.info("comet.disconnected");
-			// addChatLine(MESSAGE_ROOM_DISCONNECTED, COLOR_SYSTEM_MESSAGE);
 		}
 
 		@Override
@@ -643,8 +568,6 @@ public class MainPresenter implements Presenter {
 			}
 			logger.log(Level.SEVERE, "comet.error [connected=" + connected + "] ("
 					+ statuscode + ")", exception);
-			// addChatLine(MESSAGE_ROOM_ERROR + exception.getMessage(),
-			// COLOR_SYSTEM_MESSAGE);
 		}
 
 		@Override
@@ -662,10 +585,11 @@ public class MainPresenter implements Presenter {
 		public void onMessage(List<?> messages) {
 			for (Object message : messages) {
 				if (message instanceof ToggleClickEvent) {
+					// toggle event on server occured;
+					// could be triggered by someone else or this client
 					ToggleClickEvent e = (ToggleClickEvent) message;
-
 					String pressedBtn = e.getButtonID();
-					ToggleButton toggleButton = null;
+					HasValue<Boolean> toggleButton = null;
 					ToggleGroup group = null;
 					if (pressedBtn.equals(Display.PROGRAM_INPUT_1_BTN_ID)) {
 						toggleButton = MainPresenter.this.display
@@ -743,7 +667,6 @@ public class MainPresenter implements Presenter {
 						toggleButton = display.getPreviewMedia1Button();
 					} else if (pressedBtn.equals(Display.PREVIEW_MEDIA2_BTN_ID)) {
 						toggleButton = display.getPreviewMedia2Button();
-
 					} else if (pressedBtn
 							.equals(Display.TRANS_CTRL_STYLE_AUTO_BTN_ID)) {
 						toggleButton = display
@@ -762,9 +685,25 @@ public class MainPresenter implements Presenter {
 					InputElement slider = null;
 					if (sliderID.equals(Display.TRANSITION_CONTROL_SLIDER_ID)) {
 						slider = MainPresenter.this.display.getTransitionBar();
+					} else if (sliderID.equals(Display.AUDIO_MASTER_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getMasterVolumeSlider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT1_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput1Slider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT2_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput2Slider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT3_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput3Slider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT4_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput4Slider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT5_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput5Slider();
+					} else if (sliderID.equals(Display.AUDIO_INPUT6_VOL_SLIDER_ID)) {
+						slider = MainPresenter.this.display.getAudioInput6Slider();
 					}
 					if (slider != null
 							&& !e.getConnectionID().equals(client.getConnectionID())) {
+						// slider action succeeded on the server;
+						// someone else used the slider so update gui
 						blockSlideEvent = true;
 						slider.setValue(e.getValue().toString());
 					}
@@ -776,7 +715,6 @@ public class MainPresenter implements Presenter {
 		public void onConnected(int heartbeat, int connectionID) {
 			logger.info("comet.connected [" + heartbeat + ", " + connectionID
 					+ "]");
-			// addChatLine(MESSAGE_ROOM_CONNECTED, COLOR_SYSTEM_MESSAGE);
 		}
 
 		@Override

@@ -8,6 +8,7 @@ import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.sencha.gxt.core.client.resources.ThemeStyles;
@@ -21,6 +22,12 @@ import com.sencha.gxt.widget.core.client.grid.ColumnModel;
 import com.sencha.gxt.widget.core.client.grid.Grid;
 import com.sencha.gxt.widget.core.client.grid.GridView;
 
+/**
+ * {@link UiBinder} view using GXT and HTML5.
+ * 
+ * @author S. Buder
+ * 
+ */
 public class MainView extends Composite implements MainPresenter.Display {
 
 	private static MainViewUiBinder uiBinder = GWT
@@ -293,84 +300,65 @@ public class MainView extends Composite implements MainPresenter.Display {
 		prevInputGroup.add(prev_input_4);
 		prevInputGroup.add(prev_input_5);
 		prevInputGroup.add(prev_input_6);
-		// transitionStyleGroup.add(trans_ctrl_style_mix);
-		// transitionStyleGroup.add(trans_ctrl_style_dip);
-		// transitionStyleGroup.add(trans_ctrl_style_wipe);
-		// transitionStyleGroup.add(trans_ctrl_style_dve);
-		// transitionStyleGroup.add(trans_ctrl_style_sting);
-
-		// JSONObject options = Slider.getOptions(0, 100, new int[] { 0 });
-		// options.put(SliderOption.ORIENTATION.toString(), new JSONString(
-		// "vertical"));
-		// options.put(SliderOption.STEP.toString(), new JSONNumber(1));
-		// transition_slider = new Slider("trans_slider", options);
-		// transition_slider.enable();
-		// trans_slider_panel.add(transition_slider);
-		// trans_slider_panel.
-		// this will create a link element at the end of head
-		// MGWTStyle.getTheme().getMGWTClientBundle().getMainCss().ensureInjected();
-
-		// append your own css as last thing in the head
-		// MGWTStyle.injectStyleSheet("ATEMApp.css");
 	}
 
 	@Override
-	public ToggleButton getProgramInput1Button() {
+	public HasValue<Boolean> getProgramInput1Button() {
 		return prog_input_1;
 	}
 
 	@Override
-	public ToggleButton getProgramInput2Button() {
+	public HasValue<Boolean> getProgramInput2Button() {
 		return prog_input_2;
 	}
 
 	@Override
-	public ToggleButton getProgramInput3Button() {
+	public HasValue<Boolean> getProgramInput3Button() {
 		return prog_input_3;
 	}
 
 	@Override
-	public ToggleButton getProgramInput4Button() {
+	public HasValue<Boolean> getProgramInput4Button() {
 		return prog_input_4;
 	}
 
 	@Override
-	public ToggleButton getProgramInput5Button() {
+	public HasValue<Boolean> getProgramInput5Button() {
 		return prog_input_5;
 	}
 
 	@Override
-	public ToggleButton getProgramInput6Button() {
+	public HasValue<Boolean> getProgramInput6Button() {
 		return prog_input_6;
 	}
 
 	@Override
-	public ToggleButton getProgramInputBlackButton() {
+	public HasValue<Boolean> getProgramInputBlackButton() {
 		return prog_input_black;
 	}
 
 	@Override
-	public ToggleButton getProgramInputBarsButton() {
+	public HasValue<Boolean> getProgramInputBarsButton() {
 		return prog_input_bars;
 	}
 
 	@Override
-	public ToggleButton getProgramColor1Button() {
+	public HasValue<Boolean> getProgramColor1Button() {
 		return prog_color_1;
 	}
 
 	@Override
-	public ToggleButton getProgramColor2Button() {
+	public HasValue<Boolean> getProgramColor2Button() {
 		return prog_color_2;
 	}
 
 	@Override
-	public ToggleButton getProgramMedia1Button() {
+	public HasValue<Boolean> getProgramMedia1Button() {
 		return prog_media_1;
 	}
 
 	@Override
-	public ToggleButton getProgramMedia2Button() {
+	public HasValue<Boolean> getProgramMedia2Button() {
 		return prog_media_2;
 	}
 
@@ -380,72 +368,72 @@ public class MainView extends Composite implements MainPresenter.Display {
 	}
 
 	@Override
-	public ToggleButton getPreviewInput1Button() {
+	public HasValue<Boolean> getPreviewInput1Button() {
 		return prev_input_1;
 	}
 
 	@Override
-	public ToggleButton getPreviewInput2Button() {
+	public HasValue<Boolean> getPreviewInput2Button() {
 		return prev_input_2;
 	}
 
 	@Override
-	public ToggleButton getPreviewInput3Button() {
+	public HasValue<Boolean> getPreviewInput3Button() {
 		return prev_input_3;
 	}
 
 	@Override
-	public ToggleButton getPreviewInput4Button() {
+	public HasValue<Boolean> getPreviewInput4Button() {
 		return prev_input_4;
 	}
 
 	@Override
-	public ToggleButton getPreviewInput5Button() {
+	public HasValue<Boolean> getPreviewInput5Button() {
 		return prev_input_5;
 	}
 
 	@Override
-	public ToggleButton getPreviewInput6Button() {
+	public HasValue<Boolean> getPreviewInput6Button() {
 		return prev_input_6;
 	}
 
 	@Override
-	public ToggleButton getPreviewInputBlackButton() {
+	public HasValue<Boolean> getPreviewInputBlackButton() {
 		return prev_input_black;
 	}
 
 	@Override
-	public ToggleButton getPreviewInputBarsButton() {
+	public HasValue<Boolean> getPreviewInputBarsButton() {
 		return prev_input_bars;
 	}
 
 	@Override
-	public ToggleButton getPreviewColor1Button() {
+	public HasValue<Boolean> getPreviewColor1Button() {
 		return prev_color_1;
 	}
 
 	@Override
-	public ToggleButton getPreviewColor2Button() {
+	public HasValue<Boolean> getPreviewColor2Button() {
 		return prev_color_2;
 	}
 
 	@Override
-	public ToggleButton getPreviewMedia1Button() {
+	public HasValue<Boolean> getPreviewMedia1Button() {
 		return prev_media_1;
 	}
 
 	@Override
-	public ToggleButton getPreviewMedia2Button() {
+	public HasValue<Boolean> getPreviewMedia2Button() {
 		return prev_media_2;
 	}
 
 	@Override
-	public ToggleButton getTransitionControlTransStyleAutoButton() {
+	public HasValue<Boolean> getTransitionControlTransStyleAutoButton() {
 		return trans_ctrl_auto;
 	}
 
 	@Override
-	public ToggleButton getTransitionControlTransStyleCutButton() {
+	public HasValue<Boolean> getTransitionControlTransStyleCutButton() {
 		return trans_ctrl_cut;
 	}
 

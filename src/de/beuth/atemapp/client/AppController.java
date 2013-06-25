@@ -1,11 +1,19 @@
 package de.beuth.atemapp.client;
 
+import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 
+/**
+ * Start of the Application (called by the {@link EntryPoint}) see
+ * {@link ATEMApp}
+ * 
+ * @author S. Buder
+ * 
+ */
 public class AppController implements ValueChangeHandler<String>, Presenter {
 
 	private HandlerManager eventBus;
@@ -27,8 +35,10 @@ public class AppController implements ValueChangeHandler<String>, Presenter {
 			if (token.equals("main")) {
 				presenter = new MainPresenter(eventBus, new MainView());
 			} else {
-				// presenter = new EditContactPresenter(rpcService, eventBus,
-				// new EditContactView());
+				// additional views could be presented here just check for another
+				// history token
+				throw new RuntimeException("Unknown/not supported history token '"
+						+ token + "'");
 			}
 
 			if (presenter != null) {
@@ -49,7 +59,8 @@ public class AppController implements ValueChangeHandler<String>, Presenter {
 
 	@Override
 	public void bind() {
-		// TODO Auto-generated method stub
+		// add to the history and listen for events (forward and backward buttons
+		// in browser)
 		History.addValueChangeHandler(this);
 	}
 
