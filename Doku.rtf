@@ -1,0 +1,161 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 Monaco;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;\red16\green125\blue123;\red127\green0\blue85;\red0\green0\blue192;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa240
+
+\f0\i\b\fs58 \cf0 GWT
+\i0\b0\fs26 \
+GWT steht f\'fcr Google Web Toolkit und ist ein Web-Framework. Im Grunde ist GWT ein Java-zu-JavaScript-Compiler, der den clientseitigen Code in JavaScript \'fcbersetzt. Die Server-Implementierung bleibt Java und wird nicht \'fcbersetzt, sodass hier Servlet-Code geschrieben wird.\uc0\u8232 Dadurch, das der Client-Code in JavaScript \'fcbersetzt wird sind nicht alle Java-API-Zugriffe zul\'e4ssig, da eben nicht die volle Sprachunterst\'fctzung gew\'e4hrleistet ist (s. {\field{\*\fldinst{HYPERLINK "https://developers.google.com/web-toolkit/doc/latest/DevGuideCodingBasicsCompatibility"}}{\fldrslt \cf2 hier}}).\
+\
+Die Applikation ist in der Regel in 3 packages gegliedert (client, server, shared), welche sich alle im Haupt-Package befinden. Im Haupt-Package liegt auch die GWT-Konfigurationsdatei. Diese ist immer so bennannt, wie auch die Applikation (<App-Name>.gwt.xml). Diese bestimmt den Compile-Vorgang. Hier k\'f6nnen Erweiterungen geladen, die in JavaScript zu \'fcbersetzenden packages eingestellt, die EntryPoint-Klasse gesetzt und weitere Einstellungen get\'e4tigt werden.\
+Typische Struktur einer GWT-Applikation:\
+(s. Bild im Wiki -> einf\'fcgen)\
+\
+Ebenfalls zu erw\'e4hnen ist das war-Verzeichnis. Dieses Verzeichnis ist im Grunde genommen das Webarchiv, so wie es auf dem Webserver deployed wird. Daher befindet sich darin auch ein WEB-INF-Verzeichnis mit der entsprechenden Konfigurationsdatei f\'fcr den Webserver (web.xml). Ebenfalls darin enthalten ist auch das lib-Verzeichnis. Falls die Applikation andere Erweiterungen nutzen soll, sollten diese auch immer mit in das lib-Verzeichnis abgelegt und nicht einfach nur als externe *.jar dem Classpath hinzugef\'fcgt werden.\
+
+\b\fs36 \ul GWT-Erweiterungen
+\b0 \
+
+\fs26 \ulnone GWT kann durch gewisse Module erweitert werden. Es gibt eine ganze Menge solcher Module und f\'fcr so ziemlich alle vorstellbaren Szenarien sind meist kostenlos im Internet erh\'e4ltlich.\
+In diesem Projekt wurden 2 Module verwendet:\
+1. Atmosphere Framework\
+Das Atmosphere Framework ist in erster Linie ein Websocket-Framework und besitzt einen Fallback-Mechanismus.\
+Die Anwendung des Frameworks findet sich serverseitig in der einzigen Server-Klasse 
+\f1\fs22 WebSocketServer, 
+\f0\fs26 welche sich im package de.beuth.atemapp.server befindet und clientseitig in der Klasse 
+\f1\fs22 MainPresenter 
+\f0\fs26 im package de.beuth.atemapp.client.\
+2. GXT\
+GXT ist ein UI-Framework und wurde dementsprechend f\'fcr die Darstellung verwendet.\
+Die Anwendung im Projekt wird hier nicht weiter erkl\'e4rt sondern im UI-Binder Abschnitt unter Konzepte.\
+\
+\pard\pardeftab720\sa280
+
+\b\fs36 \cf0 \ul \ulc0 Installation in Eclipse
+\b0\fs58 \ulnone \
+\pard\pardeftab720\sa240
+
+\fs26 \cf0 Mit dem Google Web Toolkit entwickelt man am besten in Eclipse. Daf\'fcr m\'fcssen lediglich ein paar Plugins installiert werden, welche alle unter einer Update-Site verf\'fcgbar sind (Aktuelle Eclipse-Version:\'a0{\field{\*\fldinst{HYPERLINK "http://dl.google.com/eclipse/plugin/4.2)."}}{\fldrslt \cf2 http://dl.google.com/eclipse/plugin/4.2).\uc0\u8232 />Eine detaillierte Anleitung findet sich }}{\field{\*\fldinst{HYPERLINK "https://developers.google.com/eclipse/docs/getting_started"}}{\fldrslt \cf2 hier}}.\
+\
+\pard\pardeftab720\sa280
+
+\i\b\fs58 \cf0 ATEMApp
+\i0\b0\fs34 \cf2 \
+\pard\pardeftab720\sa240
+
+\fs26 \cf0 Der Quellcode f\'fcr die Applikation ist erreichbar unter\'a0{\field{\*\fldinst{HYPERLINK "https://github.com/BuDDi/ATEMApp"}}{\fldrslt \cf2 https://github.com/BuDDi/ATEMApp}}\uc0\u8232 /> Nach Installation der Plugins sollte die Applikation ohne Weiteres zu starten sein.\
+\pard\pardeftab720\sa140
+
+\b\fs36 \cf0 \ul \'dcbersicht
+\fs28 \ulnone \
+\pard\pardeftab720\sa240
+
+\b0\fs26 \cf0 Im folgenden Abschnitt werden zun\'e4chst die Konzepte erkl\'e4rt und wie die einzelnen Erweiterungen eingesetzt und genutzt werden k\'f6nnen.\
+Den Einstieg f\'fcr eine GWT-Applikation bietet ein EntryPoint, in diesem Fall ATEMApp. In der onModuleLoad-Methode wird die Applikation initialisiert. Also der AppController wird erzeugt, welcher ebenfalls das Presenter-Interface implementiert und dessen go-methode wird aufgerufen.\
+\pard\pardeftab720\sa240
+
+\b\fs36 \cf0 \ul Konzepte\
+
+\i\fs26 \ulnone MVP
+\i0\b0 \
+MVP steht f\'fcr 'Model View Presenter' und ist ein von Google vorgeschlagenes bzw. entwickeltes Entwurfsmuster f\'fcr gro\'dfe GWT-Web-Applikationen nach dem Vorbild des 'Model View Control' Musters.\
+Eine Einf\'fchrung in die Thematik angelehnt an ein Beispiel befindet sich hier: https://developers.google.com/web-toolkit/articles/mvp-architecture Alternativ kann nach 'gwt mvp' "gegoogelt" werden. Es wird empfohlen sich damit zu besch\'e4ftigen, um ein Verst\'e4ndnis von diesem Entwurfsmuster zu bekommen und die F\'e4higkeit zu besitzen die Applikation beliebig erweitern zu k\'f6nnen.\
+Die hier entwickelte Applikation besitzt durch den Einsatz dieses Musters alle Voraussetzung leicht erweitert die zu werden. Es muss lediglich das 'Display'-Interface, welches jeder Presenter bereitstellt vom jeweiligen View implementiert werden. Dabei ist es dem Presenter egal, welche GUI-Technologie dahinter steckt.\
+Der Presenter ist gewisserma\'dfen die Logik hinter einer jeden View. Er nimmt bspw. die Verbindung zu Services auf, h\'e4lt alle Informationen die f\'fcr seine Einsatzzwecke erfordert werden und reicht die Daten, die angezeigt werden sollen an sein View weiter.\
+F\'fcr die bestm\'f6gliche Einhaltung des Entwurfsmusters wurde das Presenter-Interface eingef\'fchrt, da jeder Presenter (falls Erweiterungsbedarf besteht) folgende zwei Methoden besitzen sollte:\
+\pard\pardeftab720
+
+\f1\fs22 \cf3 package\cf0  de.beuth.atemapp.client;\
+\
+\cf3 import\cf0  com.google.gwt.user.client.ui.HasWidgets;\
+\
+\cf3 public\cf0  \cf3 interface\cf0  Presenter \{\
+\
+	\cf3 public\cf0  \cf3 void\cf0  bind();\
+\
+	\cf3 public\cf0  \cf3 void\cf0  go(\cf3 final\cf0  HasWidgets container);\
+\
+\}
+\f0\fs26 \
+\pard\pardeftab720\sa240
+\cf0 \
+Ein Presenter sollte dann ein inneres 'Display'-Interface definieren und so vorgeben, welcher Zugriff zur View besteht. Jeder konkrete Presenter kann auch einen EventBus besitzen, wie im Google Beispiel erkl\'e4rt. \'dcber den EventBus kann ein Presenter \'fcber andere Instanzen hinweg sich f\'fcr gewisse Events anmelden und auch gewisse Events "feuern". Somit brauchen sich verschiedene Presenter nicht kennen und k\'f6nnen indirekt \'fcber den EventBus Informationen/Daten austauschen.\
+Das Projekt besitzt bisher nur einen Presenter, den MainPresenter, welcher die komplette View halten soll. Der AppController erzeugt diesen MainPresenter samt MainView (und hier kann entschieden werden welche UI eingesetzt werden soll bspw. k\'f6nnte es eine MainViewHTML5 oder MainViewGXT geben oder eine Mischung wie in diesem Projekt)\
+\pard\pardeftab720
+
+\f1\fs22 \cf3 package\cf0  de.beuth.atemapp.client;\
+\
+\cf3 public\cf0  \cf3 class\cf0  MainPresenter \cf3 implements\cf0  Presenter \{\
+\
+	\cf3 private\cf0  Display \cf4 display\cf0 ;\
+\
+	\cf3 private\cf0  AtmosphereClient \cf4 client\cf0 ;\
+\
+\cf3 	private\cf0  MyCometListener \cf4 cometListener\cf0  = \cf3 new\cf0  MyCometListener();\
+\pard\pardeftab720\sa240
+
+\f0\fs26 \cf0 \
+Der MainPresenter h\'e4lt als seine wichtigsten Attribute sein eigens definiertes Display, einen AtmosphereClient f\'fcr die WebSocket-Kommunikation, sowie dessen enthaltener MyCometListener, der die Antworten des Servers behandelt.\
+Da MainPresenter das Interface Presenter implementiert finden sich dort auch die Implementierungen f\'fcr die Methoden. Die bind-Methode startet die WebSocket-Verbindung (initialisiert das AtmosphereClient-Attribut) und meldet sich an die UI-Elemente des Displays an um die ausgel\'f6sten Events zu behandeln. Die View muss sich also um nichts weiter k\'fcmmern als die UI-Elemente zu erzeugen, die EventListener stellt der Presenter bereit. Sobald also ein Event eines Elements des Displays ausgel\'f6st wird, wird \'fcber den AtmospherClient ein 'post' abgesetzt, welcher als Argument einen Event mit allen Informationen \'fcber das geklickte UI-Element und dessen Wert mitbekommt. Der Server antwortet im Falle des Erfolges asynchron mit der gleichen Art Event allen angemeldeten Clients. Die Behandlung eines einzelnen Clients \'fcbernimmt der 
+\f1\fs22 \cf4 cometListener
+\f0\fs26 \cf0  in der Methode 
+\i onMessage
+\i0 . Dort wird der Event vom Server empfangen, mit den Informationen \'fcber die auf dem ATEM ausgef\'fchrte Aktion. Daraufhin wird das entsprechenden UI-Element aktualisiert und die Aktion gilt als abgeschlossen.\
+Die go-Methode f\'fcgt das 
+\f1\fs22 \cf4 display
+\f0\fs26 \cf0  einfach nur dem \'fcbergebenen Container hinzu.\
+Der MainPresenter definiert ebenfalls den AtmosphereListener, der auf Events des Servers h\'f6rt und bei Erzeugung des AtmosphereClients mit \'fcbergeben wird. Aufgabe dieses Listeners ist es die Nachrichten vom Server auszuwerten, und das entsprechende UI-Element auf den entsprechenden Wert zu setzen.\
+\pard\pardeftab720\sa240
+
+\i\b \cf0 RPC / Async Call
+\i0\b0 \
+Der RPC-Mechanismus wird in diesem Projekt bisher nicht verwendet.\
+Da dies aber eine Kerntechnologie von GWT darstellt soll hier auf eine Einf\'fchrung verwiesen werden:\
+https://developers.google.com/web-toolkit/doc/latest/tutorial/RPC\
+\
+
+\i\b UiBinder
+\i0\b0 \
+UiBinder bezeichnet die M\'f6glichkeit in GWT mittels einer *.xml-Datei eine Grafische Oberfl\'e4che zu erzeugen und gewisse UI-Elemente in Objektattribute zu "injizieren".\
+Im Projekt gilt das f\'fcr die MainView.\
+Literatur bietet hier wie immer Google unter: https://developers.google.com/web-toolkit/doc/latest/DevGuideUiBinder und f\'fcr die Verwendung von GXT-Komponenten mit dem UiBinder empfiehlt es sich die Demo von GXT anzuschauen, welche auch diverse UiBinder Beispiele mit entsprechender Implementierung liefert: http://www.sencha.com/products/gxt/examples/\
+Die MainView.ui.xml ist die Definition der View mit allen enthaltenen Elementen und die entsprechenden Java-Klasse MainView.java enth\'e4lt die Felder, die per UiBinder \'fcber die xml-Datei "injiziert" werden und dem MainPresenter zur Verf\'fcgung gestellt werden.\
+Anmerkung: Die xml-Datei enth\'e4lt als Slider-Elemente HTML5 Slider, da diese permanent ValueChange-Events "feuern"; der GXT-Slider tut dies nicht.\
+\
+
+\b\fs36 \ul Offene Punkte\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240
+\ls1\ilvl0
+\b0\fs26 \cf0 \ulnone {\listtext	
+\f2 \uc0\u8259 
+\f0 	}VLC-Video Unterst\'fctzung bzw. fehlende Unterst\'fctzung zur Kommunikation mit ATEM-Udp-Server -> Protokoll noch nicht komplett unterst\'fctzt\
+{\listtext	
+\f2 \uc0\u8259 
+\f0 	}Setzen der IP-Adresse des Udp-Servers per Textfeld, der die Nachrichten bez\'fcglich der get\'e4tigten Aktion empf\'e4ngt.\
+{\listtext	
+\f2 \uc0\u8259 
+\f0 	}Robuste Kommunikation der Udp-Server (noch treten Exceptions auf)\
+{\listtext	
+\f2 \uc0\u8259 
+\f0 	}UI verbessern\
+{\listtext	
+\f2 \uc0\u8259 
+\f0 	}komplett UI-unabh\'e4ngiges Display-Interface in MainPresenter (noch GXT -> ToggleGroup)\
+{\listtext	
+\f2 \uc0\u8259 
+\f0 	}m\'f6gliche Verbesserungen: Ablaufplan, Native Unterst\'fctzung des ATEMS mit der WebApplikation (auf Udp-Server-Kommunikation verzichten)\
+\pard\pardeftab720\sa240
+
+\b\fs36 \cf0 \ul Links\
+\pard\pardeftab720\sa240
+
+\b0\fs26 \cf0 \ulnone GWT - https://developers.google.com/web-toolkit/\
+GXT - http://www.sencha.com/products/gxt\
+Atmosphere - https://github.com/Atmosphere\
+Atmosphere GWT - https://github.com/Atmosphere/atmosphere-extensions/wiki/Atmosphere-GWT-2.0}
