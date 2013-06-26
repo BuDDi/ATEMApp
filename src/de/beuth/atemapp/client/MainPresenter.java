@@ -10,6 +10,7 @@ import org.atmosphere.gwt.client.AtmosphereListener;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -75,11 +76,18 @@ public class MainPresenter implements Presenter {
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
 						// get the value first (what the user wants to do)
-						Boolean value = event.getValue();
-						// set the toggle button back to the initial state because we
-						// want to set the button only when the action succeeded on
-						// the server
-						display.getProgramInput1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						// set the toggle button back to the initial state after the
+						// browser event loop has returned because we want to set the
+						// button only when the action succeeded on the server
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_1_BTN_ID, value));
 					}
@@ -89,8 +97,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInput2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_2_BTN_ID, value));
 					}
@@ -100,8 +115,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInput3Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput3Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_3_BTN_ID, value));
 					}
@@ -112,8 +134,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInput4Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput4Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_4_BTN_ID, value));
 					}
@@ -123,8 +152,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInput5Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput5Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_5_BTN_ID, value));
 					}
@@ -134,8 +170,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInput6Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInput6Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_6_BTN_ID, value));
 					}
@@ -145,8 +188,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInputBlackButton().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInputBlackButton().setValue(!value,
+										false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_BLACK_BTN_ID, value));
 					}
@@ -156,8 +206,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramInputBarsButton().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramInputBarsButton().setValue(!value,
+										false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_INPUT_BARS_BTN_ID, value));
 					}
@@ -167,8 +224,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramColor1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramColor1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_COLOR1_BTN_ID, value));
 					}
@@ -178,8 +242,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramColor2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramColor2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_COLOR2_BTN_ID, value));
 					}
@@ -189,8 +260,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramMedia1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramMedia1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_MEDIA1_BTN_ID, value));
 					}
@@ -200,8 +278,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getProgramMedia2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getProgramMedia2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PROGRAM_MEDIA2_BTN_ID, value));
 					}
@@ -212,8 +297,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT1_BTN_ID, value));
 					}
@@ -223,8 +315,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT2_BTN_ID, value));
 					}
@@ -234,8 +333,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput3Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput3Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT3_BTN_ID, value));
 					}
@@ -245,8 +351,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput4Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput4Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT4_BTN_ID, value));
 					}
@@ -256,8 +369,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput5Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput5Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT5_BTN_ID, value));
 					}
@@ -267,8 +387,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInput6Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInput6Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT6_BTN_ID, value));
 					}
@@ -278,8 +405,16 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInputBlackButton().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInputBlackButton().setValue(!value,
+										false);
+
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT_BLACK_BTN_ID, value));
 					}
@@ -289,8 +424,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewInputBarsButton().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewInputBarsButton().setValue(!value,
+										false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_INPUT_BARS_BTN_ID, value));
 					}
@@ -300,8 +442,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewColor1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewColor1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_COLOR1_BTN_ID, value));
 					}
@@ -311,8 +460,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewColor2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewColor2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_COLOR2_BTN_ID, value));
 					}
@@ -322,8 +478,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewMedia1Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewMedia1Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_MEDIA1_BTN_ID, value));
 					}
@@ -333,8 +496,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getPreviewMedia2Button().setValue(!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getPreviewMedia2Button()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.PREVIEW_MEDIA2_BTN_ID, value));
 					}
@@ -345,9 +515,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getTransitionControlTransStyleAutoButton().setValue(
-								!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getTransitionControlTransStyleAutoButton()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.TRANS_CTRL_STYLE_AUTO_BTN_ID, value));
 					}
@@ -357,9 +533,15 @@ public class MainPresenter implements Presenter {
 
 					@Override
 					public void onValueChange(ValueChangeEvent<Boolean> event) {
-						Boolean value = event.getValue();
-						display.getTransitionControlTransStyleCutButton().setValue(
-								!value, false);
+						final Boolean value = event.getValue();
+						Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+							@Override
+							public void execute() {
+								display.getTransitionControlTransStyleCutButton()
+										.setValue(!value, false);
+							}
+						});
 						client.post(new ToggleClickEvent(
 								Display.TRANS_CTRL_STYLE_CUT_BTN_ID, value));
 					}
